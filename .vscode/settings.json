@@ -1,0 +1,9 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/taegor/school21/level3/Philosophers",
+            "binaryPath": "/home/taegor/school21/level3/Philosophers/philo",
+            "binaryArgs": []
+        }
+    ]
+}

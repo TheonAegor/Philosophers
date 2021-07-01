@@ -1,0 +1,13 @@
+make all --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/taegor/school21/level3/Philosophers'
+mkdir -p obj
+gcc  -Iincludes -O3 -c src/main2.c -o obj/main2.o
+mkdir -p obj
+gcc  -Iincludes -O3 -c src/philosopher.c -o obj/philosopher.o
+mkdir -p obj
+gcc  -Iincludes -O3 -c src/parser.c -o obj/parser.o
+mkdir -p obj
+gcc  -Iincludes -O3 -c src/utils.c -o obj/utils.o
+gcc  -o philo -Iincludes obj/main2.o obj/philosopher.o obj/parser.o obj/utils.o -lpthread
+make: Leaving directory '/home/taegor/school21/level3/Philosophers'
+ 

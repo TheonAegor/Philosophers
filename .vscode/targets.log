@@ -1,0 +1,489 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Wed Jun 30 17:25:54 2021
+
+# Variables
+
+# 'override' directive
+GNUMAKEFLAGS := 
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+DESKTOP_SESSION = ubuntu
+# default
+.SHELLFLAGS := -c
+# environment
+XDG_SESSION_CLASS = user
+# environment
+SNAP_COMMON = /var/snap/code/common
+# environment
+XDG_SESSION_TYPE = x11
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+XAUTHORITY = /run/user/1000/gdm/Xauthority
+# environment
+GDMSESSION = ubuntu
+# environment
+XMODIFIERS = @im=ibus
+# makefile
+CURDIR := /home/taegor/school21/level3/Philosophers
+# makefile
+SHELL = /bin/sh
+# environment
+SNAP_DATA = /var/snap/code/67
+# environment
+VTE_VERSION = 6003
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+JOURNAL_STREAM = 8:42735
+# makefile (from 'Makefile', line 17)
+all = $(NAME)
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# environment
+SNAP_INSTANCE_NAME = code
+# environment
+SNAP_ARCH = amd64
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# automatic
+@F = $(notdir $@)
+# environment
+IM_CONFIG_PHASE = 1
+# environment
+USERNAME = taegor
+# environment
+MAKELEVEL := 0
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from 'Makefile', line 11)
+mkdir = mkdir -p
+# environment
+MANAGERPID = 1082
+# environment
+P9K_SSH = 0
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-215567e3-bfdf-436e-9e34-3957c5671d17.sock
+# environment
+LC_NAME = ru_RU.UTF-8
+# environment
+VSCODE_CWD = /home/taegor/school21/level3/Philosophers
+# environment
+GSETTINGS_SCHEMA_DIR = /snap/code/67/usr/share/glib-2.0/schemas
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/taegor/.dotnet/tools:/home/taegor/.fzf/bin
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# makefile (from 'Makefile', line 7)
+files = src/*.c
+# environment
+SESSION_MANAGER = local/taegor-BOHK-WAX9X:@/tmp/.ICE-unix/1474,unix/taegor-BOHK-WAX9X:/tmp/.ICE-unix/1474
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+GDK_PIXBUF_MODULE_FILE = /home/taegor/snap/code/common/.cache/gdk-pixbuf-loaders.cache
+# environment
+SNAP = /snap/code/67
+# environment
+BREAKPAD_DUMP_LOCATION = /home/taegor/.config/Code/exthost Crash Reports
+# environment
+SNAP_VERSION = 507ce72a
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+VSCODE_LOG_STACK = false
+# environment
+DISABLE_WAYLAND = 1
+# environment
+VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=b72e4976-7877-4fa6-a8be-be4bf85f65f3&iid=b72e4976-7877-4fa6-a8be-be4bf85f65f3&sid=b72e4976-7877-4fa6-a8be-be4bf85f65f3","uploadToServer":true}
+# environment
+INVOCATION_ID = a98aa028a601480193473b88509def46
+# environment
+GDK_PIXBUF_MODULEDIR = /snap/code/67/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2993
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = :0
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+SNAP_INSTANCE_KEY = 
+# environment
+PWD = /home/taegor/school21/level3/Philosophers
+# makefile (from 'Makefile', line 9)
+src = $(wildcard src/*.c)
+# default
+.LOADED := 
+# environment
+SSH_AGENT_PID = 1302
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# environment
+GTK_MODULES = gail:atk-bridge
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# environment
+HOME = /home/taegor
+# environment
+VSCODE_CLI = 1
+# environment
+LOGNAME = taegor
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
+# environment
+SNAP_CONTEXT = 8ywV54PvFFEyxQXe5_ApcRo0PqIxSy3qZKhex_eelxfBaxK8StVb
+# automatic
++F = $(notdir $+)
+# environment
+ZSH = /home/taegor/.oh-my-zsh
+# environment
+SNAP_USER_COMMON = /home/taegor/snap/code/common
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# makefile (from 'Makefile', line 15)
+obj = $(addprefix $(OBJDIR)/,$(addsuffix .o, $(basename $(notdir $(src)))))
+# environment
+LC_TIME = ru_RU.UTF-8
+# environment
+SNAP_REAL_HOME = /home/taegor
+# environment
+COLORTERM = truecolor
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+QT_IM_MODULE = ibus
+# environment
+SNAP_USER_DATA = /home/taegor/snap/code/67
+# environment
+SHLVL = 1
+# environment
+GNOME_SHELL_SESSION_MODE = ubuntu
+# default
+MAKE_VERSION := 4.2.1
+# environment
+USER = taegor
+# environment
+SNAP_REVISION = 67
+# environment
+LC_MONETARY = ru_RU.UTF-8
+# makefile
+.DEFAULT_GOAL := all
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# makefile (from 'Makefile', line 1)
+NAME = philo
+# environment
+LESS = -R
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+LC_TELEPHONE = ru_RU.UTF-8
+# default
+MAKE_COMMAND := make
+# environment
+_WSREP_START_POSITION = 
+# environment
+VSCODE_NODE_CACHED_DATA_DIR = /home/taegor/.config/Code/CachedData/507ce72a4466fbb27b715c3722558bb15afa9f48
+# environment
+OLDPWD = /home/taegor/school21/level3/Philosophers/src
+# environment
+TERMINATOR_DBUS_PATH = /net/tenshu/Terminator2
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-4a99fe2d-1.57.1-main.sock
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+MAIL = taegor@student.21-school.ru
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+GDK_BACKEND = x11
+# environment
+LC_PAPER = ru_RU.UTF-8
+# environment
+QT_ACCESSIBILITY = 1
+# default
+MAKEFILES := 
+# environment
+SNAP_COOKIE = 8ywV54PvFFEyxQXe5_ApcRo0PqIxSy3qZKhex_eelxfBaxK8StVb
+# environment
+LC_NUMERIC = ru_RU.UTF-8
+# automatic
+<F = $(notdir $<)
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# makefile (from 'Makefile', line 13)
+OBJDIR = obj
+# environment
+LC_MEASUREMENT = ru_RU.UTF-8
+# environment
+SNAP_NAME = code
+# environment
+PAGER = less
+# environment
+LC_ALL = C
+# makefile (from 'Makefile', line 5)
+cc = gcc 
+# environment
+P9K_TTY = old
+# automatic
+ 
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+SNAP_REEXEC = 
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+WINDOWPATH = 2
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# environment
+LC_IDENTIFICATION = ru_RU.UTF-8
+# default
+.RECIPEPREFIX := 
+# environment
+LC_ADDRESS = ru_RU.UTF-8
+# makefile (from 'Makefile', line 3)
+option = -Iincludes
+# environment
+LANG = C
+# environment
+TERM = xterm-256color
+# environment
+TERMINATOR_DBUS_NAME = net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873
+# environment
+_P9K_TTY = /dev/pts/5
+# environment
+VSCODE_PID = 7138
+# environment
+TERMINATOR_UUID = urn:uuid:2d8d180d-0bed-4eca-8188-e52f69c959c9
+# variable set hash-table stats:
+# Load=149/1024=15%, Rehash=0, Collisions=24/184=13%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 66313, inode 1065125): 13 files, no impossibilities.
+# src (device 66313, inode 1065124): 12 files, no impossibilities.
+
+# 25 files, no impossibilities in 2 directories.
+
+# Implicit Rules
+
+obj/%.o: src/%.c
+#  recipe to execute (from 'Makefile', line 23):
+	@mkdir -p $(OBJDIR)
+	$(cc) $(option) -O3 -c $< -o $@
+
+# 1 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+obj/parser.o: src/parser.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'parser'
+#  Last modified 2021-06-30 15:50:27.104852905
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 23):
+	@mkdir -p $(OBJDIR)
+	$(cc) $(option) -O3 -c $< -o $@
+
+all: obj/main2.o obj/philosopher.o obj/parser.o obj/utils.o
+#  Command line target.
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := all
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := obj/main2.o obj/philosopher.o obj/parser.o obj/utils.o
+# automatic
+# | := 
+# automatic
+# < := obj/main2.o
+# automatic
+# ^ := obj/main2.o obj/philosopher.o obj/parser.o obj/utils.o
+# automatic
+# ? := obj/main2.o obj/philosopher.o obj/parser.o obj/utils.o
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/15=7%
+#  recipe to execute (from 'Makefile', line 20):
+	@$(cc) -o $(NAME) $(option) $^ -lpthread
+
+obj/philosopher.o: src/philosopher.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'philosopher'
+#  Last modified 2021-06-30 15:50:40.864927439
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 23):
+	@mkdir -p $(OBJDIR)
+	$(cc) $(option) -O3 -c $< -o $@
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2021-06-29 19:07:17.218266289
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/parser.c:
+#  Implicit rule search has been done.
+#  Last modified 2021-06-30 15:47:27.452053546
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/philosopher.c:
+#  Implicit rule search has been done.
+#  Last modified 2021-06-30 15:50:39.628920676
+#  File has been updated.
+#  Successfully updated.
+
+fclean: clean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 30):
+	rm -rf $(NAME)
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+re: fclean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 33):
+	make all
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 27):
+	rm -rf $(obj)
+
+obj/utils.o: src/utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'utils'
+#  Last modified 2021-06-30 14:49:41.220638106
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 23):
+	@mkdir -p $(OBJDIR)
+	$(cc) $(option) -O3 -c $< -o $@
+
+obj/main2.o: src/main2.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'main2'
+#  Last modified 2021-06-30 16:52:38.167269495
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 23):
+	@mkdir -p $(OBJDIR)
+	$(cc) $(option) -O3 -c $< -o $@
+
+# Not a target:
+src/utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2021-06-30 14:49:39.158791749
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/main2.c:
+#  Implicit rule search has been done.
+#  Last modified 2021-06-30 16:52:34.02734043
+#  File has been updated.
+#  Successfully updated.
+
+# files hash-table stats:
+# Load=15/1024=1%, Rehash=0, Collisions=0/45=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 45 / storage = 435 B / avg = 9 B
+# current buf: size = 8162 B / used = 435 B / count = 45 / avg = 9 B
+
+# strcache performance: lookups = 64 / hit rate = 29%
+# hash-table stats:
+# Load=45/8192=1%, Rehash=0, Collisions=2/64=3%
+# Finished Make data base on Wed Jun 30 17:25:54 2021
+
+ 

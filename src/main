@@ -1,0 +1,79 @@
+#include "philo.h"
+
+int				count;
+pthread_t		threads[NUM_THREADS];
+pthread_mutex_t mutex;
+
+int main(int argc, char *argv[])
+{
+	int			i;	
+
+	pthread_mutex_init(&mutex, NULL);
+	printf("count = %d\n", count);
+	for (i = 0; i < NUM_THREADS/2; i++) {
+		pthread_create(&threads[i], NULL, minus, (void *)&i);
+	};	
+	for (; i < NUM_THREADS; i++) {
+		pthread_create(&threads[i], NULL, plus, (void *)&i);
+	}
+	printf("message\n");
+	/*
+	for ( i =0; i < NUM_THREADS; i++) {
+		pthread_detach(threads[i]);
+	}
+	*/
+	for ( i =0; i < NUM_THREADS; i++) {
+		pthread_join(threads[i], NULL);
+	}
+	printf("count = %d", count);
+	return (1);
+}
+
+void	*minus(void *param)
+{
+	int local;
+	/*
+	int *i;
+
+	i = (int *)param;
+	pthread_detach(threads[*i]);
+	*/
+	pthread_mutex_lock(&mutex);
+	local = count;
+	local--;
+	pthread_mutex_unlock(&mutex);
+	printf("count in minus = %d\n",count);
+	count = local;
+}
+
+void	*plus(void *param)
+{
+	int local;
+	/*
+	int *i;
+
+	i = (int *)param;
+	pthread_detach(threads[*i]);
+	*/
+	pthread_mutex_lock(&mutex);
+	local = count;
+	local++;
+	pthread_mutex_unlock(&mutex);
+	printf("count in plus = %d\n",count);
+	count = local;
+}
+
+void *potok(void *param)
+{
+	someArgs_t *arg = (someArgs_t*) param;
+	int len;
+
+	if (arg->msg == NULL)
+		return (void *)BAD_MESSAGE;
+
+	len = strlen(arg->msg);
+	printf("%s\n", arg->msg);
+	arg->out = len;
+
+	return (void *)SUCCESS;
+}
