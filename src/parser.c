@@ -1,24 +1,24 @@
 #include "philo.h"
 
-int		parcer(int argc, char **argv, t_philosopher **phil)
+int		parcer(int argc, char **argv, long (*args)[])
 {
 	int		i;
 
 	printf("inside parser\n");
 	if (argc != 5 && argc != 6)
 		return (ER_NUM_ARGS);
-	if (((*phil)->args[0] = ft_atol(argv[1])) == -1)
+	if (((*args)[0] = ft_atol(argv[1])) == -1)
 		return (ER_INCOR_ARG);
-	if (((*phil)->args[1] = ft_atol(argv[2])) == -1)
+	if (((*args)[1] = ft_atol(argv[2])) == -1)
 		return (ER_INCOR_ARG);
-	if (((*phil)->args[2] = ft_atol(argv[3]))== -1)
+	if (((*args)[2] = ft_atol(argv[3]))== -1)
 		return (ER_INCOR_ARG);
-	if (((*phil)->args[3] = ft_atol(argv[4])) == -1)
+	if (((*args)[3] = ft_atol(argv[4])) == -1)
 		return (ER_INCOR_ARG);
 	if (argc == 6)
-		(*phil)->args[4] = ft_atol(argv[5]);
+		(*args)[4] = ft_atol(argv[5]);
 	else
-		(*phil)->args[4] = -1;
+		(*args)[4] = -1;
 	printf("end of parser\n");
 }
 

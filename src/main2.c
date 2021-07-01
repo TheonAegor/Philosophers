@@ -6,28 +6,26 @@
 int main(int argc, char *argv[])
 {
 	long			time;
-	t_philosopher	*phil;
 	pthread_mutex_t *mu;
 	pthread_t		thread;
+	long 			args[5];
 	int				i;
 	int				check;
 
 
 	time = 0;
-	pthread_create(&thread, NULL, time_count, &time);	
-	phil = malloc(sizeof(t_philosopher));
-	if ((check = parcer(argc, argv, &phil)) < 0)
+	pthread_create(&thread, NULL, time_count, &time);
+	if ((check = parcer(argc, argv, &args)) < 0)
 	{
 		printf("herer %d\n", i);
 		return (-1);
 	}
 	i = 0;
-	mu = malloc(sizeof(pthread_mutex_t) * phil->args[NUM_PHIL]);
-	phil->threads = malloc(sizeof(pthread_t) * phil->args[NUM_PHIL]); 
-	while ( i < phil->args[NUM_PHIL])
+	mu = malloc(sizeof(pthread_mutex_t) * args[NUM_PHIL]);
+	while ( i < args[NUM_PHIL])
 	{
 		pthread_mutex_init(&mu[i], NULL);
-		create_philosopher(i, &time, &phil, mu);
+		create_philosopher(i, &time, args, &mu);
 		i++;
 	}
 	/*
