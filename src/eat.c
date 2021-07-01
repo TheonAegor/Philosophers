@@ -3,14 +3,14 @@
 void	grab_fork_odd(t_philosopher **pp)
 {
 	pthread_mutex_lock(&((*pp)->mu[(*pp)->i]));
-	(*pp)->status = FORK;
+	*(*pp)->status = FORK;
 	printer(*pp);
 //	print_stat(**pp); 
 	if ((*pp)->i == (*pp)->args[NUM_PHIL] - 1)
 		pthread_mutex_lock(&((*pp)->mu[0]));
 	else
 		pthread_mutex_lock(&((*pp)->mu[(*pp)->i + 1]));
-	(*pp)->status = FORK;
+	*(*pp)->status = FORK;
 	printer(*pp);
 //	print_stat(**pp); 
 }
@@ -22,10 +22,10 @@ void	grab_fork_even(t_philosopher **pp)
 		pthread_mutex_lock(&((*pp)->mu[0]));
 	else
 		pthread_mutex_lock(&((*pp)->mu[(*pp)->i + 1]));
-	(*pp)->status = FORK;
+	*(*pp)->status = FORK;
 	printer(*pp);
 	pthread_mutex_lock(&((*pp)->mu[(*pp)->i]));
-	(*pp)->status = FORK;
+	*(*pp)->status = FORK;
 	printer(*pp);
 //	print_stat(**pp); 
 }
@@ -60,7 +60,7 @@ void	eat2(t_philosopher *pp, int *k)
 	else
 		odd_action(pp);
 
-	pp->status = EAT;
+	*pp->status = EAT;
 	printer(pp);
 //	print_stat(*pp); 
 	usleep(pp->args[T_EAT]);
@@ -70,13 +70,13 @@ void	eat2(t_philosopher *pp, int *k)
 	else
 		free_fork_odd(&pp);
 
-	pp->status = SLEEP;
+	*pp->status = SLEEP;
 	pthread_create(&thread, NULL, race_begins, pp);
 	printer(pp);
 //	print_stat(*pp); 
 	usleep(pp->args[T_SLEEP]);
 	
-	pp->status = THINK;
+	*pp->status = THINK;
 }	
 
 void 		even_action(t_philosopher *pp)

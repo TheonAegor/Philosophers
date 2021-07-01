@@ -20,18 +20,19 @@ void	*race_begins(void *arg)
 	while (1)
 	{
 		gettimeofday(&time2, NULL);
-		change = time2.tv_usec - time.tv_usec; 
+		change = (time2.tv_sec - time.tv_sec)*1000000 + (time2.tv_usec - time.tv_usec); 
 		if (p->args[T_DIE] <= change)
 		{
-			p->status = DEATH;
+			*p->status = DEATH;
 			printer(p);
 //			print_stat(*p);
 			printf("change = %ld\n", change);
 			pthread_exit(NULL);	
 			exit(0);
 		}
-		if(p->status == EAT)
+		if(*p->status == EAT)
 		{
+			pthread_exit(NULL);
 			break;
 		}
 	}

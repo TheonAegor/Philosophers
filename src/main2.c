@@ -40,63 +40,7 @@ int main(int argc, char *argv[])
 	pthread_exit(NULL);
 	return (1);
 }
-/*
-void	lock_even(t_philosopher *pp)
-{
-	if (pp->i % 2 == 0)
-	{
-//		printf("t:[%ld] phil %d grab a fork\n", *pp->time);
-		pp->status = FORK;
-		pthread_mutex_lock(&pp->mu[pp->i]);	
-		print_stat(*pp);
-		if (pp->i == NUM_PHIL - 1)
-			pthread_mutex_lock(&pp->mu[0]);	
-		else
-			pthread_mutex_lock(&pp->mu[pp->i + 1]);	
-		print_stat(*pp);
-	}
-	else
-	{
-//		printf("t:[%ld] phil %d grab a fork\n",pp->i, *pp->time);
-		pp->status = FORK;
-		if (pp->i == NUM_PHIL - 1)
-			pthread_mutex_lock(&pp->mu[0]);	
-		else
-			pthread_mutex_lock(&pp->mu[pp->i + 1]);	
-		print_stat(*pp);
-		pthread_mutex_lock(&pp->mu[pp->i]);	
-		print_stat(*pp);
-	}
-}
 
-void	lock_odd(t_philosopher *pp)
-{
-	if (pp->i % 2 != 0)
-	{
-//		printf("t:[%ld] phil %d grab a fork\n", *pp->time);
-		pp->status = FORK;
-		pthread_mutex_lock(&pp->mu[pp->i]);	
-		print_stat(*pp);
-		if (pp->i == NUM_PHIL - 1)
-			pthread_mutex_lock(&pp->mu[0]);	
-		else
-			pthread_mutex_lock(&pp->mu[pp->i + 1]);	
-		print_stat(*pp);
-	}
-	else
-	{
-//		printf("t:[%ld] phil %d grab a fork\n",pp->i, *pp->time);
-		pp->status = FORK;
-		if (pp->i == NUM_PHIL - 1)
-			pthread_mutex_lock(&pp->mu[0]);	
-		else
-			pthread_mutex_lock(&pp->mu[pp->i + 1]);	
-		print_stat(*pp);
-		pthread_mutex_lock(&pp->mu[pp->i]);	
-		print_stat(*pp);
-	}
-}
-*/
 void	*time_count(void *arg)
 {
 	struct timeval	time;
@@ -108,7 +52,7 @@ void	*time_count(void *arg)
 	while(1)
 	{
 		gettimeofday(&time2, NULL);
-		*change = (time2.tv_usec - time.tv_usec);
+		*change = (time2.tv_sec - time.tv_sec)*1000000 + (time2.tv_usec - time.tv_usec);
 		if (*change < 0)
 			*change *= -1;
 	}

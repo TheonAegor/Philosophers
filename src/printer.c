@@ -7,7 +7,7 @@ void	printer(t_philosopher *phil)
 	
 	print = (t_print *)malloc(sizeof(t_print));
 	print->args[0] = phil->i;
-	print->args[1] = phil->status;
+	print->args[1] = *phil->status;
 	print->args[2] = 2;
 	print->time = ft_ltoa_base(*phil->time, 10);
 	print->num = ft_ltoa_base(print->args[0], 10);

@@ -35,7 +35,7 @@ typedef struct s_philosopher
 	long			*time;
 	pthread_mutex_t	*mu;
 	pthread_t		*threads;
-	enum states		status;
+	int				*status;
 } t_philosopher;
 
 typedef struct	s_print
