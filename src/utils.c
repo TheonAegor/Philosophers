@@ -25,8 +25,6 @@ void	*race_begins(void *arg)
 		{
 			*p->status = DEATH;
 			printer(p);
-//			print_stat(*p);
-			printf("change = %ld\n", change);
 			pthread_exit(NULL);	
 			exit(0);
 		}

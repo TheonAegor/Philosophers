@@ -9,7 +9,7 @@ void	printer(t_philosopher *phil)
 	print->args[0] = phil->i;
 	print->args[1] = *phil->status;
 	print->args[2] = 2;
-	print->time = ft_ltoa_base(*phil->time, 10);
+	print->time = ft_ltoa_base(*phil->time / 1000, 10);
 	print->num = ft_ltoa_base(print->args[0], 10);
 	pthread_create(&print_thread, NULL, print_status, print);
 }

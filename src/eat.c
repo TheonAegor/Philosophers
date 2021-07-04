@@ -71,7 +71,7 @@ void	eat2(t_philosopher *pp, int *k)
 		free_fork_odd(&pp);
 
 	*pp->status = SLEEP;
-	pthread_create(&thread, NULL, race_begins, pp);
+//	pthread_create(&thread, NULL, race_begins, pp);
 	printer(pp);
 //	print_stat(*pp); 
 	usleep(pp->args[T_SLEEP]);
@@ -88,6 +88,35 @@ void 		odd_action(t_philosopher *pp)
 {
 	grab_fork_odd(&pp);
 }
+
+void	eat2_rev(t_philosopher *pp, int *k)
+{
+	pthread_t	thread;
+	
+	printer(pp);
+	if (pp->i % 2 != 0)
+		even_action(pp);
+	else
+		odd_action(pp);
+
+	*pp->status = EAT;
+	printer(pp);
+//	print_stat(*pp); 
+	usleep(pp->args[T_EAT]);
+
+	if (pp->i % 2 != 0)
+		free_fork_even(&pp);
+	else
+		free_fork_odd(&pp);
+
+	*pp->status = SLEEP;
+	pthread_create(&thread, NULL, race_begins, pp);
+	printer(pp);
+//	print_stat(*pp); 
+	usleep(pp->args[T_SLEEP]);
+	
+	*pp->status = THINK;
+}	
 /*
 void	eat(t_philosopher *pp, int *k)
 {

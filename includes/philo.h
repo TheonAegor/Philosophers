@@ -66,6 +66,7 @@ void		    print_wait(t_philosopher *p, long time_to_wait);
 void		    *race_begins(void *arg);
 void		    eat(t_philosopher *pp, int *k);
 void		    eat2(t_philosopher *pp, int *k);
+void		    eat2_rev(t_philosopher *pp, int *k);
 char        	*ft_ltoa_base(long long value, int base);
 unsigned int    ft_intsize(long long nb, int base);
 size_t  		ft_strlen(const char *str);

@@ -19,8 +19,9 @@ void		create_philosopher(int i, long *time, long *args, pthread_mutex_t **mu)
 	pp->mu = *mu;
 	pp->threads = malloc(sizeof(pthread_t));
 
-	printf("create_phil %d\n", pp->i);
+//	printf("create_phil %d\n", pp->i);
 	pthread_create(pp->threads, NULL, philosopher, pp); 
+//	pthread_join(*pp->threads, NULL);
 }
 
 void	*philosopher(void *arg)
@@ -31,10 +32,13 @@ void	*philosopher(void *arg)
 
 	pp = arg;
 //	printf("start philosopher %d\n", pp->i);
-	pthread_create(&thread, NULL, race_begins, pp);
+//	pthread_create(&thread, NULL, race_begins, pp);
 	while (k != pp->args[NUM_EAT])
 	{
-		eat2(pp, &k);
+		if (pp->args[NUM_PHIL] % 2 == 0)
+			eat2(pp, &k);
+		else
+			eat2_rev(pp, &k);
 		if (pp->args[4] != NO_VAL)
 			k++;
 //		eat(pp, &k);

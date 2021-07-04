@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Jun 30 17:25:54 2021
+# Make data base, printed on Fri Jul  2 14:28:33 2021
 
 # Variables
 
@@ -49,7 +49,7 @@ VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:42735
+JOURNAL_STREAM = 8:43881
 # makefile (from 'Makefile', line 17)
 all = $(NAME)
 # environment
@@ -77,15 +77,15 @@ VSCODE_VERBOSE_LOGGING = true
 # makefile (from 'Makefile', line 11)
 mkdir = mkdir -p
 # environment
-MANAGERPID = 1082
+MANAGERPID = 1061
 # environment
 P9K_SSH = 0
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-215567e3-bfdf-436e-9e34-3957c5671d17.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-40235c2d-a48a-4942-821f-abf154e504e3.sock
 # environment
 LC_NAME = ru_RU.UTF-8
 # environment
-VSCODE_CWD = /home/taegor/school21/level3/Philosophers
+VSCODE_CWD = /home/taegor/school21/level3/Philosophers/test
 # environment
 GSETTINGS_SCHEMA_DIR = /snap/code/67/usr/share/glib-2.0/schemas
 # default
@@ -99,7 +99,7 @@ LSCOLORS = Gxfxcxdxbxegedabagacad
 # makefile (from 'Makefile', line 7)
 files = src/*.c
 # environment
-SESSION_MANAGER = local/taegor-BOHK-WAX9X:@/tmp/.ICE-unix/1474,unix/taegor-BOHK-WAX9X:/tmp/.ICE-unix/1474
+SESSION_MANAGER = local/taegor-BOHK-WAX9X:@/tmp/.ICE-unix/1453,unix/taegor-BOHK-WAX9X:/tmp/.ICE-unix/1453
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -119,7 +119,7 @@ DISABLE_WAYLAND = 1
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=b72e4976-7877-4fa6-a8be-be4bf85f65f3&iid=b72e4976-7877-4fa6-a8be-be4bf85f65f3&sid=b72e4976-7877-4fa6-a8be-be4bf85f65f3","uploadToServer":true}
 # environment
-INVOCATION_ID = a98aa028a601480193473b88509def46
+INVOCATION_ID = 0e8f26b4b03b4691af69c0756329164a
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/67/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -133,7 +133,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2993
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3329
 # automatic
 %F = $(notdir $%)
 # environment
@@ -149,7 +149,7 @@ src = $(wildcard src/*.c)
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1302
+SSH_AGENT_PID = 1269
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -227,7 +227,7 @@ _WSREP_START_POSITION =
 # environment
 VSCODE_NODE_CACHED_DATA_DIR = /home/taegor/.config/Code/CachedData/507ce72a4466fbb27b715c3722558bb15afa9f48
 # environment
-OLDPWD = /home/taegor/school21/level3/Philosophers/src
+OLDPWD = /home/taegor/school21/level3/Philosophers
 # environment
 TERMINATOR_DBUS_PATH = /net/tenshu/Terminator2
 # default
@@ -277,7 +277,6 @@ cc = gcc
 # environment
 P9K_TTY = old
 # automatic
- 
 ^F = $(notdir $^)
 # default
 SUFFIXES := 
@@ -290,6 +289,7 @@ WINDOWPATH = 2
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
+ 
 LC_IDENTIFICATION = ru_RU.UTF-8
 # default
 .RECIPEPREFIX := 
@@ -304,11 +304,11 @@ TERM = xterm-256color
 # environment
 TERMINATOR_DBUS_NAME = net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873
 # environment
-_P9K_TTY = /dev/pts/5
+_P9K_TTY = /dev/pts/8
 # environment
-VSCODE_PID = 7138
+VSCODE_PID = 72860
 # environment
-TERMINATOR_UUID = urn:uuid:2d8d180d-0bed-4eca-8188-e52f69c959c9
+TERMINATOR_UUID = urn:uuid:c1daf32d-74fe-4465-ae77-a0092bc4ef21
 # variable set hash-table stats:
 # Load=149/1024=15%, Rehash=0, Collisions=24/184=13%
 
@@ -318,10 +318,10 @@ TERMINATOR_UUID = urn:uuid:2d8d180d-0bed-4eca-8188-e52f69c959c9
 
 # Directories
 
-# . (device 66313, inode 1065125): 13 files, no impossibilities.
-# src (device 66313, inode 1065124): 12 files, no impossibilities.
+# . (device 66313, inode 1065125): 14 files, no impossibilities.
+# src (device 66313, inode 1065124): 22 files, no impossibilities.
 
-# 25 files, no impossibilities in 2 directories.
+# 36 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -334,17 +334,24 @@ obj/%.o: src/%.c
 
 # Files
 
+# Not a target:
+src/printer.c:
+#  Implicit rule search has been done.
+#  Last modified 2021-07-02 10:49:32.46676295
+#  File has been updated.
+#  Successfully updated.
+
 obj/parser.o: src/parser.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'parser'
-#  Last modified 2021-06-30 15:50:27.104852905
+#  Last modified 2021-07-02 10:50:03.31216379
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 23):
 	@mkdir -p $(OBJDIR)
 	$(cc) $(option) -O3 -c $< -o $@
 
-all: obj/main2.o obj/philosopher.o obj/parser.o obj/utils.o
+all: obj/main2.o obj/utils2.o obj/philosopher.o obj/parser.o obj/eat.o obj/printer.o obj/utils.o
 #  Command line target.
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
@@ -358,24 +365,34 @@ all: obj/main2.o obj/philosopher.o obj/parser.o obj/utils.o
 # automatic
 # * := 
 # automatic
-# + := obj/main2.o obj/philosopher.o obj/parser.o obj/utils.o
+# + := obj/main2.o obj/utils2.o obj/philosopher.o obj/parser.o obj/eat.o obj/printer.o obj/utils.o
 # automatic
 # | := 
 # automatic
 # < := obj/main2.o
 # automatic
-# ^ := obj/main2.o obj/philosopher.o obj/parser.o obj/utils.o
+# ^ := obj/main2.o obj/utils2.o obj/philosopher.o obj/parser.o obj/eat.o obj/printer.o obj/utils.o
 # automatic
-# ? := obj/main2.o obj/philosopher.o obj/parser.o obj/utils.o
+# ? := obj/main2.o obj/utils2.o obj/philosopher.o obj/parser.o obj/eat.o obj/printer.o obj/utils.o
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/15=7%
 #  recipe to execute (from 'Makefile', line 20):
 	@$(cc) -o $(NAME) $(option) $^ -lpthread
 
+obj/utils2.o: src/utils2.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'utils2'
+#  Last modified 2021-06-30 23:40:24.121429519
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 23):
+	@mkdir -p $(OBJDIR)
+	$(cc) $(option) -O3 -c $< -o $@
+
 obj/philosopher.o: src/philosopher.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'philosopher'
-#  Last modified 2021-06-30 15:50:40.864927439
+#  Last modified 2021-07-02 14:21:04.784582204
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 23):
@@ -391,21 +408,28 @@ obj/philosopher.o: src/philosopher.c
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-06-29 19:07:17.218266289
+#  Last modified 2021-06-30 20:51:07.592971508
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/parser.c:
 #  Implicit rule search has been done.
-#  Last modified 2021-06-30 15:47:27.452053546
+#  Last modified 2021-07-02 10:49:32.46676295
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/utils2.c:
+#  Implicit rule search has been done.
+#  Last modified 2021-06-30 23:33:10.825684381
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/philosopher.c:
 #  Implicit rule search has been done.
-#  Last modified 2021-06-30 15:50:39.628920676
+#  Last modified 2021-07-02 14:20:37.888491266
 #  File has been updated.
 #  Successfully updated.
 
@@ -439,7 +463,7 @@ clean:
 obj/utils.o: src/utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'utils'
-#  Last modified 2021-06-30 14:49:41.220638106
+#  Last modified 2021-07-02 13:54:30.568588807
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 23):
@@ -449,7 +473,27 @@ obj/utils.o: src/utils.c
 obj/main2.o: src/main2.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'main2'
-#  Last modified 2021-06-30 16:52:38.167269495
+#  Last modified 2021-07-02 14:24:31.880810068
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 23):
+	@mkdir -p $(OBJDIR)
+	$(cc) $(option) -O3 -c $< -o $@
+
+obj/eat.o: src/eat.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'eat'
+#  Last modified 2021-07-02 14:21:04.90458257
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 23):
+	@mkdir -p $(OBJDIR)
+	$(cc) $(option) -O3 -c $< -o $@
+
+obj/printer.o: src/printer.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'printer'
+#  Last modified 2021-07-02 10:50:03.496171906
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 23):
@@ -459,31 +503,38 @@ obj/main2.o: src/main2.c
 # Not a target:
 src/utils.c:
 #  Implicit rule search has been done.
-#  Last modified 2021-06-30 14:49:39.158791749
+#  Last modified 2021-07-02 13:54:27.596664769
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/main2.c:
 #  Implicit rule search has been done.
-#  Last modified 2021-06-30 16:52:34.02734043
+#  Last modified 2021-07-02 14:24:29.980810781
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/eat.c:
+#  Implicit rule search has been done.
+#  Last modified 2021-07-02 14:21:02.128574034
 #  File has been updated.
 #  Successfully updated.
 
 # files hash-table stats:
-# Load=15/1024=1%, Rehash=0, Collisions=0/45=0%
+# Load=21/1024=2%, Rehash=0, Collisions=1/63=2%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 45 / storage = 435 B / avg = 9 B
-# current buf: size = 8162 B / used = 435 B / count = 45 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 65 / storage = 651 B / avg = 10 B
+# current buf: size = 8162 B / used = 651 B / count = 65 / avg = 10 B
 
-# strcache performance: lookups = 64 / hit rate = 29%
+# strcache performance: lookups = 87 / hit rate = 25%
 # hash-table stats:
-# Load=45/8192=1%, Rehash=0, Collisions=2/64=3%
-# Finished Make data base on Wed Jun 30 17:25:54 2021
+# Load=65/8192=1%, Rehash=0, Collisions=2/87=2%
+# Finished Make data base on Fri Jul  2 14:28:33 2021
 
  
