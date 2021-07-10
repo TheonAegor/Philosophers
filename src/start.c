@@ -1,6 +1,6 @@
 #include "philo.h"
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	pthread_t	time_thread;
 	long		*time;	
@@ -9,10 +9,10 @@ int main(int argc, char *argv[])
 
 	time = malloc(sizeof(long));
 	pthread_create(&time_thread, NULL, time_count, time);
-	if ((err = parcer(argc, argv, &args)) != 1)
+	err = parcer(argc, argv, &args);
+	if (err != 1)
 		return (error_handler(err));
 	philosopher(args, time);
-
 	printf("\nend of main\n");
 	return (1);
 }

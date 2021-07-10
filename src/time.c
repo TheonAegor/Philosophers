@@ -8,10 +8,11 @@ void	*time_count(void *arg)
 
 	change = arg;
 	gettimeofday(&time, NULL);
-	while(1)
+	while (1)
 	{
 		gettimeofday(&time2, NULL);
-		*change = (time2.tv_sec - time.tv_sec)*1000000 + (time2.tv_usec - time.tv_usec);
+		*change = (time2.tv_sec - time.tv_sec) * _
+			1000000 + (time2.tv_usec - time.tv_usec);
 		if (*change < 0)
 			*change *= -1;
 	}
@@ -30,14 +31,14 @@ void	*race_begins(void *arg)
 	{
 		time = *p->last_eat;
 		gettimeofday(&time2, NULL);
-		change = (time2.tv_sec - time.tv_sec)*1000000 + (time2.tv_usec - time.tv_usec);
+		change = (time2.tv_sec - time.tv_sec) * 1000000 + _
+			(time2.tv_usec - time.tv_usec);
 		if (p->die <= change)
 		{
 			*p->status = DEATH;
-//			*p->death_time = *p->time;
 			return (0);
 		}
-		if(*p->status == EATING)
+		if (*p->status == EATING)
 			return (0);
 	}
 }

@@ -7,7 +7,7 @@ long	ft_atol(const char *str)
 
 	res = 0;
 	i = -1;
-	while(str[++i])
+	while (str[++i])
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 			res = res * 10 + str[i] - '0';
@@ -19,7 +19,7 @@ long	ft_atol(const char *str)
 
 size_t	ft_strlen(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != 0)
@@ -27,7 +27,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-static int			ft_find_tens(long n)
+static int	ft_find_tens(long n)
 {
 	int				i;
 
@@ -42,10 +42,10 @@ static int			ft_find_tens(long n)
 	return (i);
 }
 
-static char			*ft_ifbigger(char *p, int tens,
-		long long int n)
+static char	*ft_ifbigger(char *p, int tens, long long int n)
 {
-	if (!(p = malloc(sizeof(char) * (tens + 1))))
+	p = malloc(sizeof(char) * (tens + 1));
+	if (!p)
 		return (NULL);
 	p[tens--] = '\0';
 	while (tens >= 0)
@@ -57,7 +57,7 @@ static char			*ft_ifbigger(char *p, int tens,
 	return (p);
 }
 
-char				*ft_itoa(long num)
+char	*ft_itoa(long num)
 {
 	char			*p;
 	int				tens;
@@ -70,8 +70,7 @@ char				*ft_itoa(long num)
 		p = ft_ifbigger(p, tens, n);
 	else
 	{
-		if (!(p = malloc(sizeof(char) * (tens + 2))))
-			return (NULL);
+		p = malloc(sizeof(char) * (tens + 2));
 		tens += 1;
 		n = (-1) * n;
 		p[tens--] = '\0';

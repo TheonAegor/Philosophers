@@ -1,6 +1,6 @@
 #include "philo.h"
 
-size_t		ft_strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	lsize;
 	size_t	dsize;
@@ -23,7 +23,7 @@ size_t		ft_strlcat(char *dst, const char *src, size_t size)
 	return (dsize);
 }
 
-void		free_all(t_phil *phil, pthread_t *pt, pthread_mutex_t *mu)
+void	free_all(t_phil *phil, pthread_t *pt, pthread_mutex_t *mu)
 {
 	if (phil)
 		free(phil);

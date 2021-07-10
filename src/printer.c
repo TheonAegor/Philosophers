@@ -10,7 +10,7 @@ void	free_pr(t_print *pr)
 
 void	fill_str(t_print *pr, int len)
 {
-	int status;
+	int	status;
 
 	status = pr->status;
 	memset(pr->str, '\0', len);
@@ -28,13 +28,6 @@ void	fill_str(t_print *pr, int len)
 		ft_strlcat(pr->str, "is sleeping", len);
 	else if (status == THINKING)
 		ft_strlcat(pr->str, "is thinking", len);
-/*
-	if (pr->death_time[0] != '0')
-	{
-		ft_strlcat(pr->str, " ", 1);
-		ft_strlcat(pr->str, pr->death_time, len);
-	}
-*/
 	ft_strlcat(pr->str, "\n", len);
 	write(1, pr->str, len - 1);
 	free_pr(pr);
@@ -42,7 +35,7 @@ void	fill_str(t_print *pr, int len)
 
 void	*make_str(void *arg)
 {
-	t_print *pr;
+	t_print	*pr;
 	int		status;
 	int		len;
 
@@ -59,9 +52,7 @@ void	*make_str(void *arg)
 		len += 10;
 	else if (status == THINKING)
 		len += 11;
-//	if (pr->death_time[0] != '0')
-//		len += ft_strlen(pr->death_time) + 1;
-	pr->str = malloc(sizeof(char)*len);
+	pr->str = malloc(sizeof(char) * len);
 	fill_str(pr, len);
 	return (0);
 }
@@ -75,9 +66,5 @@ void	printer(t_phil *p)
 	pr->status = *p->status;
 	pr->time = ft_itoa(*p->time / 1000);
 	pr->i = ft_itoa(p->i);
-//	pr->death_time = ft_itoa(*p->death_time);
-//	printf("before make str\n");
 	pthread_create(&thr, NULL, make_str, pr);
-//	pthread_join(thr, NULL);
-//	make_str(pr);
 }

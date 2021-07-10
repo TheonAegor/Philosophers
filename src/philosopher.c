@@ -1,21 +1,20 @@
 #include "philo.h"
 
-int		philosopher(long *args, long *time)
+int	philosopher(long *args, long *time)
 {
 	pthread_t		*phil_threads;
 	pthread_mutex_t	*mu;
 	t_phil			*phil;
 	int				i;
 
-	phil_threads = malloc(sizeof(pthread_t)*args[NUM]);
-	mu = malloc(sizeof(pthread_mutex_t)*args[NUM]);
-	phil = malloc(sizeof(t_phil)*args[NUM]);
-
+	phil_threads = malloc(sizeof(pthread_t) * args[NUM]);
+	mu = malloc(sizeof(pthread_mutex_t) * args[NUM]);
+	phil = malloc(sizeof(t_phil) * args[NUM]);
 	init_mutexes(&mu, args[NUM]);
 	create_phils(args, time, mu, phil, args[NUM]);
 	create_threads(phil, phil_threads, args[NUM]);
-
-	if ((i = check_philos(phil, args[NUM])) >= 0)
+	i = check_philos(phil, args[NUM]);
+	if (i >= 0)
 	{
 		printer(&phil[i]);
 		i = 0;
@@ -31,11 +30,9 @@ int		philosopher(long *args, long *time)
 			i++;
 		}
 		free_all(phil, phil_threads, mu);
-		usleep(10000);
+		usleep(1000);
 		return (0);
 	}
-		
-	printf("end of philosopher\n");
 	return (1);
 }
 
@@ -54,7 +51,6 @@ void	*life_cycle(void *arg)
 		printer(p);
 		if (*p->status == DEATH)
 			return (0);
-//		eating(p);
 		if (p->num % 2 == 0)
 		{
 			if (!(eating(p)))
@@ -65,27 +61,22 @@ void	*life_cycle(void *arg)
 			if (!(eating_rev(p)))
 				return (0);
 		}
-//		write(1, "here\n", 5);
 		*p->status = SLEEPING;
 		printer(p);
 		pthread_create(&race, NULL, race_begins, p);
-		usleep(p->sleep); 
-
+		usleep(p->sleep);
+		*p->death += 1;
 		if (p->finish > 0)
-		{
-			*p->death += 1;
 			j++;
-		}
 		if (*p->status == DEATH)
 			return (0);
 		*p->status = THINKING;
 	}
-	
 }
 
-int		check_flags(int *flags, int num)
+int	check_flags(int *flags, int num)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < num)
@@ -97,10 +88,10 @@ int		check_flags(int *flags, int num)
 	return (1);
 }
 
-int		check_philos(t_phil *ps, int num)
+int	check_philos(t_phil *ps, int num)
 {
-	int i;
-	int *flags;
+	int	i;
+	int	*flags;
 
 	flags = malloc(sizeof(int) * num);
 	while (1)
