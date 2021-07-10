@@ -47,6 +47,8 @@ void		create_philosopher(long	*args, long *time, int i, pthread_mutex_t *mu, t_p
 	phil->finish = args[FINISH];
 	phil->time = time;
 	phil->status = malloc(sizeof(int));
+//	phil->death_time = malloc(sizeof(long));
+//	*phil->death_time = 0;
 	phil->last_eat = malloc(sizeof(struct timeval));
 	*phil->status = THINKING;
 	phil->i = i;

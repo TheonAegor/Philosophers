@@ -56,7 +56,7 @@ int		eating(t_phil *p)
 		grab_even(p);
 	else
 	{
-		usleep(100);
+		usleep(300);
 		grab_odd(p);
 	}
 	usleep(p->eat);
@@ -82,23 +82,21 @@ int		eating_rev(t_phil *p)
 {
 	pthread_t		race;
 	
-	if (p->i % 2 != 0)
-	{
-		usleep(100);
-		grab_even(p);
-	}
-	else
+	if (p->i % 2 == 0)
 		grab_odd(p);
-	usleep(p->eat);
-	if (*p->status != DEATH)
-	{
-		*p->status = EATING;
-		printer(p);
-	}
-	if (p->i % 2 != 0)
-		unlock_even(p);
 	else
-		unlock_odd(p);
+	{
+		usleep(300);
+		grab_odd(p);
+	}
+	usleep(p->eat);
+//	if (*p->status != DEATH)
+//	{
+		*p->status = EATING;
+		gettimeofday(p->last_eat, NULL);
+		printer(p);
+//	}
+	unlock_odd(p);
 	if (*p->status == DEATH)
 	{
 		write(1, "here\n", 5);

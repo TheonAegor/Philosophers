@@ -36,6 +36,7 @@ typedef struct s_phil
 	long			sleep;
 	long			finish;
 	long			*time;
+	long			*death_time;
 	int				*status;
 	int				i;
 	int				*death;
@@ -50,6 +51,7 @@ typedef struct s_print
 	char		*i;
 	char		*time;
 	char		*str;
+//	char		*death_time;
 }				t_print;
 
 //time

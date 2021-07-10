@@ -53,23 +53,17 @@ void	*life_cycle(void *arg)
 	{
 		printer(p);
 		if (*p->status == DEATH)
-		{
 			return (0);
-		}
 //		eating(p);
 		if (p->num % 2 == 0)
 		{
 			if (!(eating(p)))
-			{
 				return (0);
-			}
 		}
 		else
 		{
 			if (!(eating_rev(p)))
-			{
 				return (0);
-			}
 		}
 //		write(1, "here\n", 5);
 		*p->status = SLEEPING;
@@ -83,9 +77,7 @@ void	*life_cycle(void *arg)
 			j++;
 		}
 		if (*p->status == DEATH)
-		{
 			return (0);
-		}
 		*p->status = THINKING;
 	}
 	
