@@ -7,53 +7,36 @@ int		philosopher(long *args, long *time)
 	t_phil			*phil;
 	int				i;
 
-	printf("in philosophers\n");
-
 	phil_threads = malloc(sizeof(pthread_t)*args[NUM]);
 	mu = malloc(sizeof(pthread_mutex_t)*args[NUM]);
 	phil = malloc(sizeof(t_phil)*args[NUM]);
-	i = 0;
-	while (i < args[NUM])
+
+	init_mutexes(&mu, args[NUM]);
+	create_phils(args, time, mu, phil, args[NUM]);
+	create_threads(phil, phil_threads, args[NUM]);
+
+	if ((i = check_philos(phil, args[NUM])) >= 0)
 	{
-		pthread_mutex_init(&mu[i], NULL);
-		i++;
+		printer(&phil[i]);
+		i = 0;
+		while (i < args[NUM])
+		{
+			pthread_detach(phil_threads[i]);
+			i++;
+		}
+		i = 0;
+		while (i < args[NUM])
+		{
+			pthread_mutex_destroy(&mu[i]);
+			i++;
+		}
+		free_all(phil, phil_threads, mu);
+		usleep(10000);
+		return (0);
 	}
-	i = 0;
-	while (i < args[NUM])
-	{
-		create_philosopher(args, time, i, mu, &phil[i]); 
-		pthread_create(&phil_threads[i], NULL, life_cycle, &phil[i]);
-		i++;
-	}
-	i = 0;
-	while (i < args[NUM])
-	{
-		pthread_join(phil_threads[i], NULL);
-		i++;
-	}
-	i = 0;
-	while (i < args[NUM])
-	{
-		pthread_mutex_destroy(&mu[i]);
-		i++;
-	}
+		
 	printf("end of philosopher\n");
 	return (1);
-}
-
-void		create_philosopher(long	*args, long *time, int i, pthread_mutex_t *mu, t_phil *phil)
-{
-	phil->num = args[NUM];	
-	phil->die = args[DIE];	
-	phil->eat = args[EAT];	
-	phil->sleep = args[SLEEP];	
-	phil->finish = args[FINISH];	
-	phil->time = time;	
-	phil->status = malloc(sizeof(int));
-	*phil->status = THINKING;
-	phil->i = i;
-	phil->mu = mu;
-	printf("Philosopher created\n");
 }
 
 void	*life_cycle(void *arg)
@@ -63,12 +46,87 @@ void	*life_cycle(void *arg)
 	int				j;
 
 	p = arg;
+	gettimeofday(p->last_eat, NULL);
 	pthread_create(&race, NULL, race_begins, p);
 	j = 0;
 	while (j != p->finish)
 	{
 		printer(p);
+		if (*p->status == DEATH)
+		{
+			return (0);
+		}
+//		eating(p);
+		if (p->num % 2 == 0)
+		{
+			if (!(eating(p)))
+			{
+				return (0);
+			}
+		}
+		else
+		{
+			if (!(eating_rev(p)))
+			{
+				return (0);
+			}
+		}
+//		write(1, "here\n", 5);
+		*p->status = SLEEPING;
+		printer(p);
+		pthread_create(&race, NULL, race_begins, p);
+		usleep(p->sleep); 
+
 		if (p->finish > 0)
+		{
+			*p->death += 1;
 			j++;
+		}
+		if (*p->status == DEATH)
+		{
+			return (0);
+		}
+		*p->status = THINKING;
 	}
+	
+}
+
+int		check_flags(int *flags, int num)
+{
+	int i;
+
+	i = 0;
+	while (i < num)
+	{
+		if (flags[i] == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int		check_philos(t_phil *ps, int num)
+{
+	int i;
+	int *flags;
+
+	flags = malloc(sizeof(int) * num);
+	while (1)
+	{
+		i = 0;
+		while (i < num)
+		{
+			if (*ps[i].status == DEATH)
+				return (i);
+			if (*ps[i].death == ps[i].finish)
+				flags[i] = 1;
+			if (check_flags(flags, num) == 1)
+			{
+				printf("all phils took meal\n");
+				return (i);
+			}
+			i++;
+		}
+	}	
+	return (0);
 }

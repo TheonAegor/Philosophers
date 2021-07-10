@@ -6,17 +6,17 @@ int		parcer(int argc, char **argv, long (*args)[])
 
 	if (argc != 5 && argc != 6)
 		return (ER_NUM_ARGS);
-	if (((*args)[0] = ft_atol(argv[1])) == -1)
+	if (((*args)[NUM] = ft_atol(argv[1])) == -1)
 		return (ER_INCOR_ARG);
-	if (((*args)[1] = ft_atol(argv[2])) == -1)
+	if (((*args)[DIE] = ft_atol(argv[2]) * 1000) == -1)
 		return (ER_INCOR_ARG);
-	if (((*args)[2] = ft_atol(argv[3]))== -1)
+	if (((*args)[EAT] = ft_atol(argv[3]) * 1000)== -1)
 		return (ER_INCOR_ARG);
-	if (((*args)[3] = ft_atol(argv[4])) == -1)
+	if (((*args)[SLEEP] = ft_atol(argv[4]) * 1000) == -1)
 		return (ER_INCOR_ARG);
 	if (argc == 6)
-		(*args)[4] = ft_atol(argv[5]);
+		(*args)[FINISH] = ft_atol(argv[5]);
 	else
-		(*args)[4] = -1;
+		(*args)[FINISH] = -1;
 	return (1);
 }

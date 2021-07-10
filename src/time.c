@@ -17,6 +17,7 @@ void	*time_count(void *arg)
 	}
 }
 
+/*
 void	*race_begins(void *arg)
 {
 	t_phil			*p;
@@ -34,12 +35,44 @@ void	*race_begins(void *arg)
 		if (p->die <= change)
 		{
 			*p->status = DEATH;
-			printer(p);
-			pthread_exit(NULL);
-			exit(0);
+			write(1, ft_itoa(*p->status), ft_strlen(ft_itoa(*p->status)));
+			write(1, "\n", 1);
+			write(1, "heeere\n", 7);
+			return (0);
 		}
 		if(*p->status == EATING)
-			break;
+			return (0);
 	}
-	return (0);
+}
+*/
+void	*race_begins(void *arg)
+{
+	t_phil			*p;
+	struct timeval	time;
+	struct timeval	time2;
+	long			change;
+
+	p = arg;
+//	gettimeofday(&time, NULL);
+	change = 0;
+	while (1)
+	{
+		time = *p->last_eat;
+		gettimeofday(&time2, NULL);
+		change = (time2.tv_sec - time.tv_sec)*1000000 + (time2.tv_usec - time.tv_usec);
+		if (p->die <= change)
+		{
+			*p->status = DEATH;
+			/*
+			write(1, ft_itoa(*p->status), ft_strlen(ft_itoa(*p->status))); 
+			write(1, "\n", 1);
+			write(1, ft_itoa(change), ft_strlen(ft_itoa(change)));
+			write(1, "\n", 1);
+			write(1, "heeere\n", 7);
+			*/
+			return (0);
+		}
+		if(*p->status == EATING)
+			return (0);
+	}
 }
