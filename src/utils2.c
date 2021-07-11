@@ -37,7 +37,7 @@ void	free_all(t_phil *phil, pthread_t *pt, pthread_mutex_t *mu, int num)
 			free(phil[i].last_eat);
 			i++;
 		}
-		free(phil);	
+		free(phil);
 	}
 	if (pt)
 		free(pt);

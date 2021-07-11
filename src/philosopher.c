@@ -11,7 +11,7 @@ int	philosopher(long *args, long *time)
 	mu = malloc(sizeof(pthread_mutex_t) * args[NUM]);
 	phil = malloc(sizeof(t_phil) * args[NUM]);
 	init_mutexes(&mu, args[NUM]);
-	create_phils(args, time, mu, phil, args[NUM]);
+	create_phils(args, time, mu, phil);
 	create_threads(phil, phil_threads, args[NUM]);
 	i = check_philos(phil, args[NUM]);
 	if (i >= 0)
@@ -21,6 +21,34 @@ int	philosopher(long *args, long *time)
 		usleep(1000);
 		return (0);
 	}
+	return (1);
+}
+
+static int	do_cycle(t_phil *p, int *j, pthread_t race)
+{
+	printer(p);
+	if (p->num % 2 == 0)
+	{
+		if (!(eating(p)))
+			return (0);
+	}
+	else
+	{
+		if (!(eating_rev(p)))
+			return (0);
+	}
+	if (*p->status == DEATH)
+		return (0);
+	*p->status = SLEEPING;
+	pthread_create(&race, NULL, race_begins, p);
+	printer(p);
+	usleep(p->sleep);
+	*p->death += 1;
+	if (p->finish > 0)
+		++*j;
+	if (*p->status == DEATH)
+		return (0);
+	*p->status = THINKING;
 	return (1);
 }
 
@@ -36,29 +64,8 @@ void	*life_cycle(void *arg)
 	j = 0;
 	while (j != p->finish)
 	{
-		printer(p);
-		if (*p->status == DEATH)
+		if (do_cycle(p, &j, race) == 0)
 			return (0);
-		if (p->num % 2 == 0)
-		{
-			if (!(eating(p)))
-				return (0);
-		}
-		else
-		{
-			if (!(eating_rev(p)))
-				return (0);
-		}
-		*p->status = SLEEPING;
-		printer(p);
-		pthread_create(&race, NULL, race_begins, p);
-		usleep(p->sleep);
-		*p->death += 1;
-		if (p->finish > 0)
-			j++;
-		if (*p->status == DEATH)
-			return (0);
-		*p->status = THINKING;
 	}
 }
 
