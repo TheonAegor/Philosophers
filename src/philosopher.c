@@ -17,19 +17,7 @@ int	philosopher(long *args, long *time)
 	if (i >= 0)
 	{
 		printer(&phil[i]);
-		i = 0;
-		while (i < args[NUM])
-		{
-			pthread_detach(phil_threads[i]);
-			i++;
-		}
-		i = 0;
-		while (i < args[NUM])
-		{
-			pthread_mutex_destroy(&mu[i]);
-			i++;
-		}
-		free_all(phil, phil_threads, mu);
+		free_detach_destroy(phil, phil_threads, mu, args[NUM]);
 		usleep(1000);
 		return (0);
 	}
@@ -104,10 +92,7 @@ int	check_philos(t_phil *ps, int num)
 			if (*ps[i].death == ps[i].finish)
 				flags[i] = 1;
 			if (check_flags(flags, num) == 1)
-			{
-				printf("all phils took meal\n");
 				return (i);
-			}
 			i++;
 		}
 	}	

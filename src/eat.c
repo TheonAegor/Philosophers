@@ -1,6 +1,6 @@
 #include "philo.h"
 
-static int	grab_odd(t_phil *p)
+int	grab_odd(t_phil *p)
 {
 	pthread_mutex_lock(&p->mu[p->i]);
 	*p->status = FORK;
@@ -14,7 +14,7 @@ static int	grab_odd(t_phil *p)
 	return (1);
 }
 
-static int	grab_even(t_phil *p)
+int	grab_even(t_phil *p)
 {
 	if (p->i == p->num - 1)
 		pthread_mutex_lock(&p->mu[0]);
@@ -28,7 +28,7 @@ static int	grab_even(t_phil *p)
 	return (1);
 }
 
-static int	unlock_odd(t_phil *p)
+int	unlock_odd(t_phil *p)
 {
 	pthread_mutex_unlock(&p->mu[p->i]);
 	if (p->i == p->num - 1)
@@ -38,7 +38,7 @@ static int	unlock_odd(t_phil *p)
 	return (1);
 }
 
-static int	unlock_even(t_phil *p)
+int	unlock_even(t_phil *p)
 {
 	if (p->i == p->num - 1)
 		pthread_mutex_unlock(&p->mu[0]);
@@ -71,39 +71,6 @@ int	eating(t_phil *p)
 	else
 		unlock_odd(p);
 	if (*p->status == DEATH)
-	{
-		write(1, "here\n", 5);
 		return (0);
-	}
-	return (1);
-}
-
-int	eating_rev(t_phil *p)
-{
-	pthread_t		race;
-
-	if (p->i % 2 == 0)
-		grab_odd(p);
-	else
-	{
-		usleep(300);
-		grab_odd(p);
-	}
-	usleep(p->eat);
-	if (*p->status != DEATH)
-	{
-		*p->status = EATING;
-		gettimeofday(p->last_eat, NULL);
-		printer(p);
-	}
-	if (p->i % 2 == 0)
-		unlock_odd(p);
-	else
-		unlock_even(p);
-	if (*p->status == DEATH)
-	{
-		write(1, "here\n", 5);
-		return (0);
-	}
 	return (1);
 }

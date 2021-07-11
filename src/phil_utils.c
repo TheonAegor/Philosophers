@@ -52,3 +52,16 @@ void	create_philosopher(long	*args, long *time, int i, pthread_mutex_t *mu, t_ph
 	phil->i = i;
 	phil->mu = mu;
 }
+
+void	free_detach_destroy(t_phil *phil, pthread_t *pt, pthread_mutex_t *mu, int num)
+{
+	int	i;
+
+	i = 0;
+	while (i < num)
+		pthread_detach(pt[i++]);
+	i = 0;	
+	while (i < num)
+		pthread_mutex_destroy(&mu[i++]);
+	free_all(phil, pt, mu, num);
+}

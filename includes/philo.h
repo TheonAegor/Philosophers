@@ -67,7 +67,7 @@ size_t		ft_strlen(const char *str);
 char        *ft_itoa(long num);
 //utils2
 size_t      ft_strlcat(char *dst, const char *src, size_t size);
-void        free_all(t_phil *phil, pthread_t *pt, pthread_mutex_t *mu);
+void        free_all(t_phil *phil, pthread_t *pt, pthread_mutex_t *mu, int num);
 //philosophers
 int			philosopher(long *args, long *time);
 void        create_philosopher(long *args, long *time, int i, pthread_mutex_t *mu, t_phil *phil);
@@ -75,10 +75,15 @@ void		*life_cycle(void *arg);
 int			check_philos(t_phil *ps, int num);
 //phil_itils
 void		init_mutexes(pthread_mutex_t **mu, int num);
-void		create_phils(long *args,long *time,pthread_mutex_t *mu,t_phil *phil, int num);
+void		create_phils(long *args,long *time,pthread_mutex_t *mu, t_phil *phil, int num);
 void		create_threads(t_phil *phil, pthread_t *phil_threads, int num);
+void		free_detach_destroy(t_phil *phil, pthread_t *pt, pthread_mutex_t *mu, int num);
 //printer
 void		printer(t_phil *p);
 //eat
 int			eating(t_phil *p);
 int			eating_rev(t_phil *p);
+int			unlock_even(t_phil *p);
+int			unlock_odd(t_phil *p);
+int			grab_even(t_phil *p);
+int			grab_odd(t_phil *p);

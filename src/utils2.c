@@ -23,10 +23,22 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	return (dsize);
 }
 
-void	free_all(t_phil *phil, pthread_t *pt, pthread_mutex_t *mu)
+void	free_all(t_phil *phil, pthread_t *pt, pthread_mutex_t *mu, int num)
 {
+	int	i;
+
+	i = 0;
 	if (phil)
-		free(phil);
+	{
+		while (i < num)
+		{
+			free(phil[i].death);
+			free(phil[i].status);
+			free(phil[i].last_eat);
+			i++;
+		}
+		free(phil);	
+	}
 	if (pt)
 		free(pt);
 	if (mu)
