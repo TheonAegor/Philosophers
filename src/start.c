@@ -10,10 +10,10 @@ int	main(int argc, char *argv[])
 
 	time = malloc(sizeof(long));
 	pthread_create(&time_thread, NULL, time_count, time);
-	err = parcer(argc, argv, &args);
+	err = parcer(argc, argv, &all.args);
 	if (err != 1)
 		return (error_handler(err));
-	philosopher(args, time);
+	philosopher(all.args, time);
 	printf("\nend of main\n");
 	return (1);
 }
