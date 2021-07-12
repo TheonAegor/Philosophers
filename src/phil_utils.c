@@ -12,16 +12,17 @@ void	init_mutexes(pthread_mutex_t **mu, int num)
 	}
 }
 
-void	create_phils(long *args, long *time, pthread_mutex_t \
+void	create_phils(t_args *sct, long *time, pthread_mutex_t \
 		*mu, t_phil *phil)
 {
 	int	i;
 
 	i = 0;
-	while (i < args[NUM])
+	while (i < sct->args[NUM])
 	{
-		create_philosopher(args, time, mu, &phil[i]);
+		create_philosopher(sct->args, time, mu, &phil[i]);
 		phil[i].i = i;
+		phil[i].one_dead = sct->dead;
 		i++;
 	}
 }
@@ -47,7 +48,7 @@ void	create_philosopher(long	*args, long *time, \
 	phil->one_dead = malloc(sizeof(int));
 	gettimeofday(phil->last_eat, NULL);
 	*phil->status = THINKING;
-	*phil->one_dead = 1; 
+	*phil->one_dead = 0; 
 	*phil->death = 0;
 	phil->num = args[NUM];
 	phil->die = args[DIE];

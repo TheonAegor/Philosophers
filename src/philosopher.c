@@ -13,14 +13,14 @@ int	philosopher(t_args *sct, long *time)
 	mu = malloc(sizeof(pthread_mutex_t) * args[NUM]);
 	phil = malloc(sizeof(t_phil) * args[NUM]);
 	init_mutexes(&mu, args[NUM]);
-	create_phils(args, time, mu, phil);
+	create_phils(sct, time, mu, phil);
 	//print_args(sct);
 	create_threads(phil, phil_threads, args[NUM]);
-	i = check_philos(phil, args[NUM]);
+	i = check_philos(phil, args[NUM], sct->dead);
 	if (i >= 0)
 	{
 		printer(&phil[i]);
-	//	free_detach_destroy(phil, phil_threads, mu, args[NUM]);
+		free_detach_destroy(phil, phil_threads, mu, args[NUM]);
 		usleep(1000);
 		return (0);
 	}
@@ -61,7 +61,6 @@ void	*life_cycle(void *arg)
 	pthread_t		race;
 	int				j;
 
-//	write(1, "h\n", 2);
 	p = arg;
 	gettimeofday(p->last_eat, NULL);
 	pthread_create(&race, NULL, race_begins, p);
@@ -87,7 +86,7 @@ int	check_flags(int *flags, int num)
 	return (1);
 }
 
-int	check_philos(t_phil *ps, int num)
+int	check_philos(t_phil *ps, int num, int *dead)
 {
 	int	i;
 	int	*flags;
@@ -98,19 +97,15 @@ int	check_philos(t_phil *ps, int num)
 		i = 0;
 		while (i < num)
 		{
-//			printf("i = %d\n", i);
 			if (*ps[i].status == DEATH)
 			{
-//				printf("status\n");
+				*dead = 1;
 				return (i);
 			}
 			if (*ps[i].death == ps[i].finish)
 				flags[i] = 1;
 			if (check_flags(flags, num) == 1)
-			{
-				printf("nice\n");
 				return (i);
-			}
 			i++;
 		}
 	}	

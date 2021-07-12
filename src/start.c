@@ -17,6 +17,5 @@ int	main(int argc, char *argv[])
 	if (err != 1)
 		return (error_handler(err));
 	philosopher(all, time);
-	printf("\nend of main\n");
 	return (1);
 }

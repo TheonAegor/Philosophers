@@ -84,10 +84,10 @@ int			philosopher(t_args *args, long *time);
 void		create_philosopher(long *args, long *time, \
 		pthread_mutex_t *mu, t_phil *phil);
 void		*life_cycle(void *arg);
-int			check_philos(t_phil *ps, int num);
+int			check_philos(t_phil *ps, int num, int *dead);
 //phil_itils
 void		init_mutexes(pthread_mutex_t **mu, int num);
-void		create_phils(long *args, long *time, \
+void		create_phils(t_args *sct, long *time, \
 		pthread_mutex_t *mu, t_phil *phil);
 void		create_threads(t_phil *phil, pthread_t *phil_threads, int num);
 void		free_detach_destroy(t_phil *phil, pthread_t *pt, \

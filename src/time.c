@@ -35,7 +35,6 @@ void	*race_begins(void *arg)
 				 (time2.tv_usec - time.tv_usec);
 		if (p->die <= change)
 		{
-//			write(1,"less\n", 5);
 			*p->status = DEATH;
 			return (0);
 		}
