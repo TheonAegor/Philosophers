@@ -31,6 +31,12 @@ enum e_states {
 	THINKING,
 };
 
+typedef struct s_args
+{
+	long		args[5];
+	int			*dead;
+}				t_args;
+
 typedef struct s_phil
 {
 	long			num;

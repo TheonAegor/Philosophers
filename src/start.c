@@ -3,6 +3,7 @@
 int	main(int argc, char *argv[])
 {
 	pthread_t	time_thread;
+	t_args		all;
 	long		*time;	
 	long		args[5];
 	int			err;
