@@ -52,6 +52,8 @@ int	eating(t_phil *p)
 {
 	pthread_t		race;
 
+	if (*p->one_dead == DEATH)
+		return (0);
 	if (p->i % 2 == 0)
 		grab_even(p);
 	else
@@ -59,13 +61,12 @@ int	eating(t_phil *p)
 		usleep(300);
 		grab_odd(p);
 	}
+	if (*p->one_dead == DEATH)
+		return (0);
 	usleep(p->eat);
-	if (*p->status != DEATH)
-	{
-		*p->status = EATING;
-		gettimeofday(p->last_eat, NULL);
-		printer(p);
-	}
+	*p->status = EATING;
+	gettimeofday(p->last_eat, NULL);
+	printer(p);
 	if (p->i % 2 == 0)
 		unlock_even(p);
 	else

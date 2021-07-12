@@ -4,6 +4,8 @@ int	eating_rev(t_phil *p)
 {
 	pthread_t		race;
 
+	if (*p->one_dead == DEATH)
+		return (0);
 	if (p->i % 2 == 0)
 		grab_odd(p);
 	else

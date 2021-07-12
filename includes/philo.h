@@ -91,7 +91,7 @@ void		create_phils(t_args *sct, long *time, \
 		pthread_mutex_t *mu, t_phil *phil);
 void		create_threads(t_phil *phil, pthread_t *phil_threads, int num);
 void		free_detach_destroy(t_phil *phil, pthread_t *pt, \
-		pthread_mutex_t *mu, int num);
+		pthread_mutex_t *mu, t_args *sct);
 //printer
 void		printer(t_phil *p);
 //eat
@@ -102,6 +102,6 @@ int			unlock_odd(t_phil *p);
 int			grab_even(t_phil *p);
 int			grab_odd(t_phil *p);
 //temporary
-void    print_args(t_args *args);
+void		print_args(t_args *args);
 
 #endif

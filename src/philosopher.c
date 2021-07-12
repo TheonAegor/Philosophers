@@ -20,7 +20,7 @@ int	philosopher(t_args *sct, long *time)
 	if (i >= 0)
 	{
 		printer(&phil[i]);
-		free_detach_destroy(phil, phil_threads, mu, args[NUM]);
+		free_detach_destroy(phil, phil_threads, mu, sct);
 		usleep(1000);
 		return (0);
 	}
@@ -40,7 +40,7 @@ static int	do_cycle(t_phil *p, int *j, pthread_t race)
 		if (!(eating_rev(p)))
 			return (0);
 	}
-	if (*p->status == DEATH)
+	if (*p->one_dead == DEATH)
 		return (0);
 	*p->status = SLEEPING;
 	pthread_create(&race, NULL, race_begins, p);
@@ -49,7 +49,7 @@ static int	do_cycle(t_phil *p, int *j, pthread_t race)
 	++*p->death;
 	if (p->finish > 0)
 		++*j;
-	if (*p->status == DEATH)
+	if (*p->one_dead == DEATH)
 		return (0);
 	*p->status = THINKING;
 	return (1);

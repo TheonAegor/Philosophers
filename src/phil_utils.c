@@ -45,10 +45,8 @@ void	create_philosopher(long	*args, long *time, \
 	phil->death = malloc(sizeof(int));
 	phil->status = malloc(sizeof(int));
 	phil->last_eat = malloc(sizeof(struct timeval));
-	phil->one_dead = malloc(sizeof(int));
 	gettimeofday(phil->last_eat, NULL);
 	*phil->status = THINKING;
-	*phil->one_dead = 0; 
 	*phil->death = 0;
 	phil->num = args[NUM];
 	phil->die = args[DIE];
@@ -60,10 +58,12 @@ void	create_philosopher(long	*args, long *time, \
 }
 
 void	free_detach_destroy(t_phil *phil, pthread_t *pt, \
-		pthread_mutex_t *mu, int num)
+		pthread_mutex_t *mu, t_args *sct)
 {
 	int	i;
+	int num;
 
+	num = sct->args[NUM];
 	i = 0;
 	while (i < num)
 		pthread_detach(pt[i++]);
@@ -71,4 +71,7 @@ void	free_detach_destroy(t_phil *phil, pthread_t *pt, \
 	while (i < num)
 		pthread_mutex_destroy(&mu[i++]);
 	free_all(phil, pt, mu, num);
+	free(sct->args);
+	free(sct->dead);
+	free(sct);
 }
