@@ -9,6 +9,7 @@
 # include <sys/time.h>
 
 # define COMMON_SYMBOLS 8
+# define NUM_OF_ARGS 5
 
 enum e_errors {
 	ER_NUM_ARGS = -40,
@@ -33,7 +34,7 @@ enum e_states {
 
 typedef struct s_args
 {
-	long		args[5];
+	long		*args;
 	int			*dead;
 }				t_args;
 
@@ -47,6 +48,7 @@ typedef struct s_phil
 	long			*time;
 	long			*death_time;
 	int				*status;
+	int				*one_dead;
 	int				i;
 	int				*death;
 	pthread_mutex_t	*mu;
@@ -66,7 +68,7 @@ typedef struct s_print
 void		*time_count(void *arg);
 void		*race_begins(void *arg);
 //parcer
-int			parcer(int argc, char **argv, long (*args)[]);
+int			parcer(int argc, char **argv, long **args);
 //erorrs
 int			error_handler(int err);
 //utils
@@ -78,7 +80,7 @@ size_t		ft_strlcat(char *dst, const char *src, size_t size);
 void		free_all(t_phil *phil, pthread_t *pt, \
 		pthread_mutex_t *mu, int num);
 //philosophers
-int			philosopher(long *args, long *time);
+int			philosopher(t_args *args, long *time);
 void		create_philosopher(long *args, long *time, \
 		pthread_mutex_t *mu, t_phil *phil);
 void		*life_cycle(void *arg);
@@ -99,5 +101,7 @@ int			unlock_even(t_phil *p);
 int			unlock_odd(t_phil *p);
 int			grab_even(t_phil *p);
 int			grab_odd(t_phil *p);
+//temporary
+void    print_args(t_args *args);
 
 #endif

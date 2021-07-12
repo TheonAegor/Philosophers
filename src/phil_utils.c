@@ -44,8 +44,11 @@ void	create_philosopher(long	*args, long *time, \
 	phil->death = malloc(sizeof(int));
 	phil->status = malloc(sizeof(int));
 	phil->last_eat = malloc(sizeof(struct timeval));
-	*phil->death = 0;
+	phil->one_dead = malloc(sizeof(int));
+	gettimeofday(phil->last_eat, NULL);
 	*phil->status = THINKING;
+	*phil->one_dead = 1; 
+	*phil->death = 0;
 	phil->num = args[NUM];
 	phil->die = args[DIE];
 	phil->eat = args[EAT];

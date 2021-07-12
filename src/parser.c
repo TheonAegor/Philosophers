@@ -1,6 +1,6 @@
 #include "philo.h"
 
-int	parcer(int argc, char **argv, long (*args)[])
+int	parcer(int argc, char **argv, long **args)
 {
 	int		i;
 
