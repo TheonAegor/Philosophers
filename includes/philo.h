@@ -1,18 +1,21 @@
-#include "pthread.h"
-#include "unistd.h"
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
-#include <sys/time.h>
+#ifndef PHILO_H
+# define PHILO_H
 
-#define COMMON_SYMBOLS 8
+# include "pthread.h"
+# include "unistd.h"
+# include "stdio.h"
+# include "stdlib.h"
+# include "string.h"
+# include <sys/time.h>
 
-enum errors {
+# define COMMON_SYMBOLS 8
+
+enum e_errors {
 	ER_NUM_ARGS = -40,
 	ER_INCOR_ARG,
 };
 
-enum args {
+enum e_args {
 	NUM = 0,
 	DIE,
 	EAT,
@@ -20,7 +23,7 @@ enum args {
 	FINISH,
 };
 
-enum states {
+enum e_states {
 	FORK,
 	DEATH,
 	EATING,
@@ -51,7 +54,6 @@ typedef struct s_print
 	char		*i;
 	char		*time;
 	char		*str;
-//	char		*death_time;
 }				t_print;
 
 //time
@@ -64,20 +66,24 @@ int			error_handler(int err);
 //utils
 long		ft_atol(const char *str);
 size_t		ft_strlen(const char *str);
-char        *ft_itoa(long num);
+char		*ft_itoa(long num);
 //utils2
-size_t      ft_strlcat(char *dst, const char *src, size_t size);
-void        free_all(t_phil *phil, pthread_t *pt, pthread_mutex_t *mu, int num);
+size_t		ft_strlcat(char *dst, const char *src, size_t size);
+void		free_all(t_phil *phil, pthread_t *pt, \
+		pthread_mutex_t *mu, int num);
 //philosophers
 int			philosopher(long *args, long *time);
-void        create_philosopher(long *args, long *time, pthread_mutex_t *mu, t_phil *phil);
+void		create_philosopher(long *args, long *time, \
+		pthread_mutex_t *mu, t_phil *phil);
 void		*life_cycle(void *arg);
 int			check_philos(t_phil *ps, int num);
 //phil_itils
 void		init_mutexes(pthread_mutex_t **mu, int num);
-void		create_phils(long *args,long *time,pthread_mutex_t *mu, t_phil *phil);
+void		create_phils(long *args, long *time, \
+		pthread_mutex_t *mu, t_phil *phil);
 void		create_threads(t_phil *phil, pthread_t *phil_threads, int num);
-void		free_detach_destroy(t_phil *phil, pthread_t *pt, pthread_mutex_t *mu, int num);
+void		free_detach_destroy(t_phil *phil, pthread_t *pt, \
+		pthread_mutex_t *mu, int num);
 //printer
 void		printer(t_phil *p);
 //eat
@@ -87,3 +93,5 @@ int			unlock_even(t_phil *p);
 int			unlock_odd(t_phil *p);
 int			grab_even(t_phil *p);
 int			grab_odd(t_phil *p);
+
+#endif
