@@ -53,6 +53,7 @@ void	*make_str(void *arg)
 		len += 11;
 	pr->str = malloc(sizeof(char) * len);
 	fill_str(pr, len);
+	free_pr(pr);
 	return (0);
 }
 
@@ -63,10 +64,8 @@ void	printer(t_phil *p)
 
 	pr = malloc(sizeof(t_print));
 	pr->status = *p->status;
-	pr->time = ft_itoa(*p->time);
+	pr->time = ft_itoa(*p->time / 1000);
 	pr->i = ft_itoa(p->i);
 	pthread_create(&thr, NULL, make_str, pr);
-	pthread_join(thr, NULL);
 	pthread_detach(thr);
-	free_pr(pr);
 }

@@ -42,7 +42,5 @@ void	*race_begins(void *arg)
 			*p->status = DEATH;
 			return (0);
 		}
-//		if (*p->status == SLEEPING)
-//			return (0);
 	}
 }
