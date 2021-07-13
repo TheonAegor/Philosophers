@@ -14,14 +14,13 @@ int	philosopher(t_args *sct, long *time)
 	phil = malloc(sizeof(t_phil) * args[NUM]);
 	init_mutexes(&mu, args[NUM]);
 	create_phils(sct, time, mu, phil);
-	//print_args(sct);
 	create_threads(phil, phil_threads, args[NUM]);
 	i = check_philos(phil, args[NUM], sct->dead);
 	if (i >= 0)
 	{
 		printer(&phil[i]);
 		free_detach_destroy(phil, phil_threads, mu, sct);
-		usleep(1000);
+		usleep(100);
 		return (0);
 	}
 	return (1);
@@ -29,6 +28,8 @@ int	philosopher(t_args *sct, long *time)
 
 static int	do_cycle(t_phil *p, int *j, pthread_t race)
 {
+	if (*p->one_dead == DEATH)
+		return (0);
 	printer(p);
 	if (p->num % 2 == 0)
 	{
@@ -43,7 +44,7 @@ static int	do_cycle(t_phil *p, int *j, pthread_t race)
 	if (*p->one_dead == DEATH)
 		return (0);
 	*p->status = SLEEPING;
-	pthread_create(&race, NULL, race_begins, p);
+//	pthread_create(&race, NULL, race_begins, p);
 	printer(p);
 	usleep(p->sleep);
 	++*p->death;
@@ -68,8 +69,11 @@ void	*life_cycle(void *arg)
 	while (j != p->finish)
 	{
 		if (do_cycle(p, &j, race) == 0)
-			return (0);
+			break ;
 	}
+	pthread_join(race, NULL);
+	pthread_detach(race);
+	return (0);
 }
 
 int	check_flags(int *flags, int num)
@@ -99,13 +103,17 @@ int	check_philos(t_phil *ps, int num, int *dead)
 		{
 			if (*ps[i].status == DEATH)
 			{
-				*dead = 1;
+				*dead = DEATH;
+				free(flags);
 				return (i);
 			}
 			if (*ps[i].death == ps[i].finish)
 				flags[i] = 1;
 			if (check_flags(flags, num) == 1)
+			{
+				free(flags);
 				return (i);
+			}
 			i++;
 		}
 	}	

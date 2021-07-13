@@ -30,7 +30,6 @@ void	fill_str(t_print *pr, int len)
 		ft_strlcat(pr->str, "is thinking", len);
 	ft_strlcat(pr->str, "\n", len);
 	write(1, pr->str, len - 1);
-	free_pr(pr);
 }
 
 void	*make_str(void *arg)
@@ -64,7 +63,10 @@ void	printer(t_phil *p)
 
 	pr = malloc(sizeof(t_print));
 	pr->status = *p->status;
-	pr->time = ft_itoa(*p->time / 1000);
+	pr->time = ft_itoa(*p->time);
 	pr->i = ft_itoa(p->i);
 	pthread_create(&thr, NULL, make_str, pr);
+	pthread_join(thr, NULL);
+	pthread_detach(thr);
+	free_pr(pr);
 }

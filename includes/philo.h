@@ -36,6 +36,7 @@ typedef struct s_args
 {
 	long		*args;
 	int			*dead;
+	long		*time;
 }				t_args;
 
 typedef struct s_phil
@@ -77,7 +78,7 @@ size_t		ft_strlen(const char *str);
 char		*ft_itoa(long num);
 //utils2
 size_t		ft_strlcat(char *dst, const char *src, size_t size);
-void		free_all(t_phil *phil, pthread_t *pt, \
+void		free_phils(t_phil *phil, pthread_t *pt, \
 		pthread_mutex_t *mu, int num);
 //philosophers
 int			philosopher(t_args *args, long *time);
@@ -91,7 +92,7 @@ void		create_phils(t_args *sct, long *time, \
 		pthread_mutex_t *mu, t_phil *phil);
 void		create_threads(t_phil *phil, pthread_t *phil_threads, int num);
 void		free_detach_destroy(t_phil *phil, pthread_t *pt, \
-		pthread_mutex_t *mu, t_args *sct);
+		pthread_mutex_t *mu, t_args *all);
 //printer
 void		printer(t_phil *p);
 //eat

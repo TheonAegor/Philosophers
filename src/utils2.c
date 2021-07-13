@@ -23,7 +23,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	return (dsize);
 }
 
-void	free_all(t_phil *phil, pthread_t *pt, pthread_mutex_t *mu, int num)
+void	free_phils(t_phil *phil, pthread_t *pt, pthread_mutex_t *mu, int num)
 {
 	int	i;
 

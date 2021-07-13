@@ -3,14 +3,20 @@
 int	grab_odd(t_phil *p)
 {
 	pthread_mutex_lock(&p->mu[p->i]);
-	*p->status = FORK;
-	printer(p);
+	if (*p->one_dead != DEATH)
+	{
+		*p->status = FORK;
+		printer(p);
+	}
 	if (p->i == p->num - 1)
 		pthread_mutex_lock(&p->mu[0]);
 	else
 		pthread_mutex_lock(&p->mu[p->i + 1]);
-	*p->status = FORK;
-	printer(p);
+	if (*p->one_dead != DEATH)
+	{
+		*p->status = FORK;
+		printer(p);
+	}
 	return (1);
 }
 
@@ -20,11 +26,17 @@ int	grab_even(t_phil *p)
 		pthread_mutex_lock(&p->mu[0]);
 	else
 		pthread_mutex_lock(&p->mu[p->i + 1]);
-	*p->status = FORK;
-	printer(p);
+	if (*p->one_dead != DEATH)
+	{
+		*p->status = FORK;
+		printer(p);
+	}
 	pthread_mutex_lock(&p->mu[p->i]);
-	*p->status = FORK;
-	printer(p);
+	if (*p->one_dead != DEATH)
+	{
+		*p->status = FORK;
+		printer(p);
+	}
 	return (1);
 }
 
@@ -58,20 +70,19 @@ int	eating(t_phil *p)
 		grab_even(p);
 	else
 	{
-		usleep(300);
+		usleep(1000);
 		grab_odd(p);
 	}
-	if (*p->one_dead == DEATH)
-		return (0);
+	if (*p->one_dead != DEATH)
+	{
+		*p->status = EATING;
+		printer(p);
+	}
 	usleep(p->eat);
-	*p->status = EATING;
 	gettimeofday(p->last_eat, NULL);
-	printer(p);
 	if (p->i % 2 == 0)
 		unlock_even(p);
 	else
 		unlock_odd(p);
-	if (*p->status == DEATH)
-		return (0);
 	return (1);
 }

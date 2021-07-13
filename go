@@ -1,3 +1,3 @@
 #!/bin/bash
 
-make && ./philo 5 0 200 200 7
+make && ./philo 2 100 200 200

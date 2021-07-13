@@ -4,9 +4,11 @@ void	*time_count(void *arg)
 {
 	struct timeval	time;
 	struct timeval	time2;
+	t_args			*args;
 	long			*change;
 
-	change = arg;
+	args = arg;
+	change = args->time;
 	gettimeofday(&time, NULL);
 	while (1)
 	{
@@ -15,6 +17,8 @@ void	*time_count(void *arg)
 				  (time2.tv_usec - time.tv_usec);
 		if (*change < 0)
 			*change *= -1;
+		if (*args->dead == DEATH)
+			return (0);
 	}
 }
 
@@ -38,7 +42,7 @@ void	*race_begins(void *arg)
 			*p->status = DEATH;
 			return (0);
 		}
-		if (*p->status == EATING)
-			return (0);
+//		if (*p->status == SLEEPING)
+//			return (0);
 	}
 }

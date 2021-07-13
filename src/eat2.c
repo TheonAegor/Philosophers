@@ -11,7 +11,7 @@ int	eating_rev(t_phil *p)
 	else
 	{
 		usleep(300);
-		grab_odd(p);
+		grab_even(p);
 	}
 	usleep(p->eat);
 	if (*p->status != DEATH)
