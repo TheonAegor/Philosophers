@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   eat.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/13 15:07:52 by taegor            #+#    #+#             */
+/*   Updated: 2021/07/13 15:12:38 by taegor           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	grab_odd(t_phil *p)
@@ -62,8 +74,6 @@ int	unlock_even(t_phil *p)
 
 int	eating(t_phil *p)
 {
-	pthread_t		race;
-
 	if (*p->one_dead == DEATH)
 		return (0);
 	if (p->i % 2 == 0)
@@ -77,12 +87,14 @@ int	eating(t_phil *p)
 	{
 		*p->status = EATING;
 		printer(p);
+		usleep(p->eat);
+		gettimeofday(p->last_eat, NULL);
 	}
-	usleep(p->eat);
-	gettimeofday(p->last_eat, NULL);
 	if (p->i % 2 == 0)
 		unlock_even(p);
 	else
 		unlock_odd(p);
+	if (*p->one_dead == DEATH)
+		return (0);
 	return (1);
 }

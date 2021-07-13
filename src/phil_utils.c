@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   phil_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/13 15:08:29 by taegor            #+#    #+#             */
+/*   Updated: 2021/07/13 15:59:10 by taegor           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	init_mutexes(pthread_mutex_t **mu, int num)
@@ -66,12 +78,21 @@ void	free_detach_destroy(t_phil *phil, pthread_t *pt, \
 	num = all->args[NUM];
 	i = 0;
 	while (i < num)
-		pthread_join(pt[i++], NULL);
+	{
+		pthread_detach(pt[i]);
+		i++;
+	}
 	i = 0;
 	while (i < num)
-		pthread_detach(pt[i++]);
+	{
+		pthread_join(pt[i], NULL);
+		i++;
+	}
 	i = 0;
 	while (i < num)
-		pthread_mutex_destroy(&mu[i++]);
+	{
+		pthread_mutex_destroy(&mu[i]);
+		i++;
+	}
 	free_phils(phil, pt, mu, num);
 }

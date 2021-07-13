@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosopher.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/13 15:08:20 by taegor            #+#    #+#             */
+/*   Updated: 2021/07/13 16:18:23 by taegor           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	philosopher(t_args *sct, long *time)
@@ -18,15 +30,16 @@ int	philosopher(t_args *sct, long *time)
 	i = check_philos(phil, args[NUM], sct->dead);
 	if (i >= 0)
 	{
+		usleep(1000);
 		printer(&phil[i]);
-		free_detach_destroy(phil, phil_threads, mu, sct);
-		usleep(100);
+	//	free_detach_destroy(phil, phil_threads, mu, sct);
+		usleep(10000);
 		return (0);
 	}
 	return (1);
 }
 
-static int	do_cycle(t_phil *p, int *j, pthread_t race)
+static int	do_cycle(t_phil *p, int *j)
 {
 	if (*p->one_dead == DEATH)
 		return (0);
@@ -44,7 +57,6 @@ static int	do_cycle(t_phil *p, int *j, pthread_t race)
 	if (*p->one_dead == DEATH)
 		return (0);
 	*p->status = SLEEPING;
-//	pthread_create(&race, NULL, race_begins, p);
 	printer(p);
 	usleep(p->sleep);
 	++*p->death;
@@ -68,11 +80,11 @@ void	*life_cycle(void *arg)
 	j = 0;
 	while (j != p->finish)
 	{
-		if (do_cycle(p, &j, race) == 0)
+		if (do_cycle(p, &j) == 0)
 			break ;
 	}
-	pthread_join(race, NULL);
 	pthread_detach(race);
+	pthread_join(race, NULL);
 	return (0);
 }
 
@@ -98,8 +110,8 @@ int	check_philos(t_phil *ps, int num, int *dead)
 	flags = malloc(sizeof(int) * num);
 	while (1)
 	{
-		i = 0;
-		while (i < num)
+		i = -1;
+		while (++i < num)
 		{
 			if (*ps[i].status == DEATH)
 			{
@@ -114,7 +126,6 @@ int	check_philos(t_phil *ps, int num, int *dead)
 				free(flags);
 				return (i);
 			}
-			i++;
 		}
 	}	
 	return (0);

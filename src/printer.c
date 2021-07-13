@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printer.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/13 15:08:42 by taegor            #+#    #+#             */
+/*   Updated: 2021/07/13 16:12:05 by taegor           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	free_pr(t_print *pr)
@@ -8,7 +20,7 @@ void	free_pr(t_print *pr)
 	free(pr);
 }
 
-void	fill_str(t_print *pr, int len)
+int		fill_str(t_print *pr, int len)
 {
 	int	status;
 
@@ -29,7 +41,9 @@ void	fill_str(t_print *pr, int len)
 	else if (status == THINKING)
 		ft_strlcat(pr->str, "is thinking", len);
 	ft_strlcat(pr->str, "\n", len);
-	write(1, pr->str, len - 1);
+	if (write(1, pr->str, len - 1) == -1)
+		return (-1);
+	return (1);
 }
 
 void	*make_str(void *arg)
@@ -68,4 +82,5 @@ void	printer(t_phil *p)
 	pr->i = ft_itoa(p->i);
 	pthread_create(&thr, NULL, make_str, pr);
 	pthread_detach(thr);
+	pthread_join(thr, NULL);
 }
