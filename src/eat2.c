@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:07:48 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/13 15:11:00 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/13 16:46:21 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	eating_rev(t_phil *p)
 		grab_odd(p);
 	else
 	{
-		usleep(300);
-		grab_even(p);
+		usleep(1000);
+		grab_odd(p);
 	}
 	if (*p->status != DEATH)
 	{
@@ -30,10 +30,7 @@ int	eating_rev(t_phil *p)
 		usleep(p->eat);
 		gettimeofday(p->last_eat, NULL);
 	}
-	if (p->i % 2 == 0)
-		unlock_odd(p);
-	else
-		unlock_even(p);
+	unlock_odd(p);
 	if (*p->status == DEATH)
 		return (0);
 	return (1);

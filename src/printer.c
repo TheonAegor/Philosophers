@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:42 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/13 16:28:31 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/13 17:19:03 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,5 @@ void	printer(t_phil *p)
 	pr->i = ft_itoa(p->i);
 	pthread_create(&thr, NULL, make_str, pr);
 	pthread_detach(thr);
-	pthread_join(thr, NULL);
+//	pthread_join(thr, NULL);
 }
