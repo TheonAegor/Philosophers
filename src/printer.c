@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:42 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/13 16:12:05 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/13 16:28:31 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	free_pr(t_print *pr)
 	free(pr);
 }
 
-int		fill_str(t_print *pr, int len)
+int	fill_str(t_print *pr, int len)
 {
 	int	status;
 

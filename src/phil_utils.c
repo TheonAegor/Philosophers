@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:29 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/13 15:59:10 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/13 16:27:34 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,12 @@ void	free_detach_destroy(t_phil *phil, pthread_t *pt, \
 	num = all->args[NUM];
 	i = 0;
 	while (i < num)
-	{
-		pthread_detach(pt[i]);
-		i++;
-	}
+		pthread_detach(pt[i++]);
 	i = 0;
 	while (i < num)
-	{
-		pthread_join(pt[i], NULL);
-		i++;
-	}
+		pthread_join(pt[i++], NULL);
 	i = 0;
 	while (i < num)
-	{
-		pthread_mutex_destroy(&mu[i]);
-		i++;
-	}
+		pthread_mutex_destroy(&mu[i++]);
 	free_phils(phil, pt, mu, num);
 }
