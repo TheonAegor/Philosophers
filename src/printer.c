@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:42 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/13 17:19:03 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/13 19:58:40 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ int	fill_str(t_print *pr, int len)
 		ft_strlcat(pr->str, "died", len);
 	else if (status == EATING)
 		ft_strlcat(pr->str, "is eating", len);
-	else if (status == FORK)
-		ft_strlcat(pr->str, "has taken a fork", len);
+	else if (status == LFORK)
+		ft_strlcat(pr->str, "has taken a left fork", len);
+	else if (status == RFORK)
+		ft_strlcat(pr->str, "has taken a right fork", len);
 	else if (status == SLEEPING)
 		ft_strlcat(pr->str, "is sleeping", len);
 	else if (status == THINKING)
@@ -59,8 +61,10 @@ void	*make_str(void *arg)
 		len += 4;
 	else if (status == EATING)
 		len += 9;
-	else if (status == FORK)
-		len += 16;
+	else if (status == LFORK)
+		len += 21;
+	else if (status == RFORK)
+		len += 22;
 	else if (status == SLEEPING)
 		len += 10;
 	else if (status == THINKING)
@@ -81,6 +85,6 @@ void	printer(t_phil *p)
 	pr->time = ft_itoa(*p->time / 1000);
 	pr->i = ft_itoa(p->i);
 	pthread_create(&thr, NULL, make_str, pr);
-	pthread_detach(thr);
+//	pthread_detach(thr);
 //	pthread_join(thr, NULL);
 }

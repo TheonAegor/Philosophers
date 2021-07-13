@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:35 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/13 15:08:36 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/13 20:29:23 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	*race_begins(void *arg)
 		if (p->die <= change)
 		{
 			*p->status = DEATH;
+			*p->one_dead = DEATH;
 			return (0);
 		}
 	}

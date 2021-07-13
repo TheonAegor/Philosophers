@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:29 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/13 17:00:17 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/13 19:40:16 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,20 +72,17 @@ void	create_philosopher(long	*args, long *time, \
 void	free_detach_destroy(t_phil *phil, pthread_t *pt, \
 		pthread_mutex_t *mu, t_args *all)
 {
-	int	i;
+//	int	i;
 	int	num;
 
 	num = all->args[NUM];
-	i = 0;
-	while (i < num)
-		pthread_detach(pt[i++]);
 	/*
 	i = 0;
 	while (i < num)
-		pthread_join(pt[i++], NULL);
-		*/
+		detach_join(&(pt[i++]));
 	i = 0;
 	while (i < num)
 		pthread_mutex_destroy(&mu[i++]);
+		*/
 	free_phils(phil, pt, mu, num);
 }

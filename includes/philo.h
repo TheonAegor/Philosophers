@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:07:33 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/13 15:07:35 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/13 20:19:40 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "stdio.h"
 # include "stdlib.h"
 # include "string.h"
+# include "errno.h"
 # include <sys/time.h>
 
 # define COMMON_SYMBOLS 8
@@ -37,7 +38,8 @@ enum e_args {
 };
 
 enum e_states {
-	FORK,
+	LFORK,
+	RFORK,
 	DEATH,
 	EATING,
 	SLEEPING,
@@ -46,9 +48,9 @@ enum e_states {
 
 typedef struct s_args
 {
-	long		*args;
-	int			*dead;
-	long		*time;
+	long			*args;
+	int				*dead;
+	long			*time;
 }				t_args;
 
 typedef struct s_phil
@@ -92,6 +94,8 @@ char		*ft_itoa(long num);
 size_t		ft_strlcat(char *dst, const char *src, size_t size);
 void		free_phils(t_phil *phil, pthread_t *pt, \
 		pthread_mutex_t *mu, int num);
+void		free_all(t_args *all);
+void		detach_join(pthread_t *thr);
 //philosophers
 int			philosopher(t_args *args, long *time);
 void		create_philosopher(long *args, long *time, \
@@ -108,13 +112,16 @@ void		free_detach_destroy(t_phil *phil, pthread_t *pt, \
 //printer
 void		printer(t_phil *p);
 //eat
-int			eating(t_phil *p);
-int			eating_rev(t_phil *p);
-int			unlock_even(t_phil *p);
-int			unlock_odd(t_phil *p);
-int			grab_even(t_phil *p);
-int			grab_odd(t_phil *p);
+int			 grab_left(t_phil *p);
+int			 grab_right(t_phil *p);
+int			 release_right(t_phil *p);
+int			 release_left(t_phil *p);
+int			 go_eat(t_phil *p);
+int			 go_sleep(t_phil *p);
+int			 go_think(t_phil *p);
 //temporary
 void		print_args(t_args *args);
+//life_cycle_utils
+int			choose_path(t_phil *p);
 
 #endif
