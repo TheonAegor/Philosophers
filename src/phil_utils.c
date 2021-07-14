@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:29 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 17:56:40 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 18:47:49 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,6 @@ void	free_detach_destroy(t_phil *phil, pthread_t *pt, \
 	int	num;
 
 	num = all->args[NUM];
-	/*
-	i = 0;
-	while (i < num)
-		detach_join(&(pt[i++]));
-	i = 1;
-	while (i < 2)
-	{
-		pthread_join(pt[i], NULL);
-		i++;
-	}
-		*/
 	i = 0;
 	while (i < num)
 		pthread_mutex_destroy(&mu[i++]);

@@ -6,19 +6,14 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:47 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 17:57:59 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 18:27:24 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char *argv[])
+static int init_all(t_args *all)
 {
-	pthread_t	time_thread;
-	t_args		*all;
-	int			err;
-
-	all = malloc(sizeof(t_args));
 	all->dead = malloc(sizeof(int));
 	all->args = malloc(sizeof(long) * NUM_OF_ARGS);
 	all->time = malloc(sizeof(long));
@@ -29,6 +24,17 @@ int	main(int argc, char *argv[])
 	*all->have_eaten = 0;
 	*all->who_is_dead = 0;
 	*all->dead = 0;
+	return (1);
+}
+
+int	main(int argc, char *argv[])
+{
+	pthread_t	time_thread;
+	t_args		*all;
+	int			err;
+
+	all = malloc(sizeof(t_args));
+	init_all(all);
 	pthread_create(&time_thread, NULL, time_count, all);
 	pthread_detach(time_thread);
 	err = parcer(argc, argv, &all->args);

@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:07:52 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 16:33:34 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 18:50:23 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ int	grab_left(t_phil *p, pthread_t *print)
 {
 	pthread_mutex_lock(&(p->mu[p->i]));
 	if (*p->one_dead != DEATH)
-	{
 		*p->status = LFORK;
-		printer(p, print);
-	}
+	printer(p, print);
 	return (1);
 }
 
@@ -30,10 +28,8 @@ int	grab_right(t_phil *p, pthread_t *print)
 	else
 		pthread_mutex_lock(&(p->mu[(p->i) + 1]));
 	if (*p->one_dead != DEATH)
-	{
 		*p->status = RFORK;
-		printer(p, print);
-	}
+	printer(p, print);
 	return (1);
 }
 
@@ -58,15 +54,11 @@ int	go_eat(t_phil *p, pthread_t *print)
 	grab_left(p, print);
 	grab_right(p, print);
 	if (*p->one_dead != DEATH)
-	{
 		*p->status = EATING;
-		printer(p, print);
-		usleep(p->eat);
-		gettimeofday(p->last_eat, NULL);
-	}
+	printer(p, print);
+	usleep(p->eat);
+	gettimeofday(p->last_eat, NULL);
 	release_right(p);
 	release_left(p);
-	if (*p->one_dead == DEATH)
-		return (0);
 	return (1);
 }
