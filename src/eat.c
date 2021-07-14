@@ -6,24 +6,24 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:07:52 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 15:36:53 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 16:33:34 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	grab_left(t_phil *p)
+int	grab_left(t_phil *p, pthread_t *print)
 {
 	pthread_mutex_lock(&(p->mu[p->i]));
 	if (*p->one_dead != DEATH)
 	{
 		*p->status = LFORK;
-		printer(p);
+		printer(p, print);
 	}
 	return (1);
 }
 
-int	grab_right(t_phil *p)
+int	grab_right(t_phil *p, pthread_t *print)
 {
 	if (p->i == p->num - 1)
 		pthread_mutex_lock(&(p->mu[0]));
@@ -32,7 +32,7 @@ int	grab_right(t_phil *p)
 	if (*p->one_dead != DEATH)
 	{
 		*p->status = RFORK;
-		printer(p);
+		printer(p, print);
 	}
 	return (1);
 }
@@ -52,15 +52,15 @@ int	release_left(t_phil *p)
 	return (1);
 }
 
-int	go_eat(t_phil *p)
+int	go_eat(t_phil *p, pthread_t *print)
 {
 	//printf("here i = %d, p->num = %d\n", p->i, (int)p->num - 1);
-	grab_left(p);
-	grab_right(p);
+	grab_left(p, print);
+	grab_right(p, print);
 	if (*p->one_dead != DEATH)
 	{
 		*p->status = EATING;
-		printer(p);
+		printer(p, print);
 		usleep(p->eat);
 		gettimeofday(p->last_eat, NULL);
 	}

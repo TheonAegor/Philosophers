@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:29 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 15:12:35 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 17:42:15 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	create_phils(t_args *sct, long *time, pthread_mutex_t \
 		phil[i].i = i;
 		phil[i].one_dead = sct->dead;
 		phil[i].who_is_dead = sct->who_is_dead;
+		phil[i].have_eaten = sct->have_eaten;
 		i++;
 	}
 }
@@ -48,6 +49,7 @@ void	create_threads(t_phil *phil, pthread_t *phil_threads, int num)
 	while (i < num)
 	{
 		pthread_create(&phil_threads[i], NULL, life_cycle, &phil[i]);
+		pthread_detach(phil_threads[i]);
 		i++;
 	}
 }
@@ -55,12 +57,10 @@ void	create_threads(t_phil *phil, pthread_t *phil_threads, int num)
 void	create_philosopher(long	*args, long *time, \
 		pthread_mutex_t *mu, t_phil *phil)
 {
-	phil->death = malloc(sizeof(int));
 	phil->status = malloc(sizeof(int));
 	phil->last_eat = malloc(sizeof(struct timeval));
 	gettimeofday(phil->last_eat, NULL);
 	*phil->status = THINKING;
-	*phil->death = 0;
 	phil->num = args[NUM];
 	phil->die = args[DIE];
 	phil->eat = args[EAT];
@@ -73,7 +73,7 @@ void	create_philosopher(long	*args, long *time, \
 void	free_detach_destroy(t_phil *phil, pthread_t *pt, \
 		pthread_mutex_t *mu, t_args *all)
 {
-//	int	i;
+	int	i;
 	int	num;
 
 	num = all->args[NUM];
@@ -81,9 +81,15 @@ void	free_detach_destroy(t_phil *phil, pthread_t *pt, \
 	i = 0;
 	while (i < num)
 		detach_join(&(pt[i++]));
+	i = 1;
+	while (i < 2)
+	{
+		pthread_join(pt[i], NULL);
+		i++;
+	}
+		*/
 	i = 0;
 	while (i < num)
 		pthread_mutex_destroy(&mu[i++]);
-		*/
 	free_phils(phil, pt, mu, num);
 }

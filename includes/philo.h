@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:07:33 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 09:33:10 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 17:37:25 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_args
 	int				*dead;
 	long			*time;
 	int				*who_is_dead;
+	int				*have_eaten;
 }				t_args;
 
 typedef struct s_phil
@@ -65,7 +66,7 @@ typedef struct s_phil
 	long			*death_time;
 	int				*status;
 	int				i;
-	int				*death;
+	int				*have_eaten;
 	pthread_mutex_t	*mu;
 	struct timeval	*last_eat;
 	int				*one_dead;
@@ -112,15 +113,15 @@ void		create_threads(t_phil *phil, pthread_t *phil_threads, int num);
 void		free_detach_destroy(t_phil *phil, pthread_t *pt, \
 		pthread_mutex_t *mu, t_args *all);
 //printer
-void		printer(t_phil *p);
+void		printer(t_phil *p, pthread_t *print);
 //eat
-int			 grab_left(t_phil *p);
-int			 grab_right(t_phil *p);
+int			 grab_left(t_phil *p, pthread_t *print);
+int			 grab_right(t_phil *p, pthread_t *print);
 int			 release_right(t_phil *p);
 int			 release_left(t_phil *p);
-int			 go_eat(t_phil *p);
-int			 go_sleep(t_phil *p);
-int			 go_think(t_phil *p);
+int			 go_eat(t_phil *p, pthread_t *print);
+int			 go_sleep(t_phil *p, pthread_t *print);
+int			 go_think(t_phil *p, pthread_t *print);
 //temporary
 void		print_args(t_args *args);
 //life_cycle_utils

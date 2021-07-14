@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:42 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 14:44:33 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 16:32:21 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,15 @@ void	*make_str(void *arg)
 	return (0);
 }
 
-void	printer(t_phil *p)
+void	printer(t_phil *p, pthread_t *print)
 {
 	t_print		*pr;
-	pthread_t	thr;
 
 	pr = malloc(sizeof(t_print));
 	pr->status = *p->status;
 	pr->time = ft_itoa(*p->time / 1000.000000);
 	pr->i = ft_itoa(p->i);
-	pthread_create(&thr, NULL, make_str, pr);
+	pthread_create(print, NULL, make_str, pr);
 //	pthread_detach(thr);
 //	pthread_join(thr, NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:20 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 15:49:30 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 17:46:43 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	philosopher(t_args *sct, long *time)
 {
 	pthread_t		*phil_threads;
+	pthread_t		print;
 	pthread_mutex_t	*mu;
 	t_phil			*phil;
 	long			*args;
@@ -33,9 +34,10 @@ int	philosopher(t_args *sct, long *time)
 	i = check_philos(sct);
 	if (i >= 0)
 	{
-		printer(&phil[i]);
-		usleep(100000);
+		printer(&phil[i], &print);
+//		usleep(1000000);
 //		usleep(args[NUM] * 1000);
+		pthread_join(print, NULL);
 		free_detach_destroy(phil, phil_threads, mu, sct);
 //		usleep(1000000);
 		return (0);
@@ -47,6 +49,7 @@ void	*life_cycle(void *arg)
 {
 	t_phil			*p;
 	pthread_t		race;
+	pthread_t		print;
 	int				j;
 
 	p = arg;
@@ -57,23 +60,26 @@ void	*life_cycle(void *arg)
 	j = 0;
 	while (j != p->finish)
 	{
-		if (go_think(p) == 0)
+		if (go_think(p, &print) == 0)
 			break ;
-		if (go_eat(p) == 0)
+		if (go_eat(p, &print) == 0)
 			break ;
-		if (go_sleep(p) == 0)
+		if (go_sleep(p, &print) == 0)
 			break ;
-		if (j >= p->finish)
+		if (j <= p->finish)
 			j++;
 	}
-	return (0);
+	if (j == p->finish)
+		*p->have_eaten += 1;
+	pthread_join(print, NULL);
+	pthread_exit(0);
 }
 
 int	check_philos(t_args *all)
 {
 	while (1)
 	{
-		if (*all->dead == DEATH)
+		if (*all->dead == DEATH || *all->have_eaten == all->args[NUM])
 			return (*all->who_is_dead);
 		usleep(1);
 	}
