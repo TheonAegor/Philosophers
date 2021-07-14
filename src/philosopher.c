@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:20 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 13:00:49 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 14:33:01 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	*life_cycle(void *arg)
 	int				j;
 
 	p = arg;
-	gettimeofday(p->last_eat, NULL);
 	pthread_create(&race, NULL, race_begins, p);
+	gettimeofday(p->last_eat, NULL);
 	j = 0;
 	if (p->i % 2 != 0)
 		usleep(p->eat / 2);
@@ -75,7 +75,7 @@ int	check_philos(t_args *all)
 	{
 		if (*all->dead == DEATH)
 			return (*all->who_is_dead);
-		usleep(1000);
+		usleep(1);
 	}
 	return (0);
 }
