@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:20 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 18:48:17 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 19:05:34 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	philosopher(t_args *sct, long *time)
 	{
 		printer(&phil[i], &print);
 		pthread_mutex_lock(sct->print);
-		usleep(1000000);
+		usleep(100000);
 		free_detach_destroy(phil, phil_threads, mu, sct);
 		return (0);
 	}
