@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:20 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/13 21:48:20 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 13:00:49 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ int	philosopher(t_args *sct, long *time)
 	create_phils(sct, time, mu, phil);
 	create_threads(phil, phil_threads, args[NUM]);
 
-	i = check_philos(phil, args[NUM], sct->dead);
+	i = check_philos(sct);
 	if (i >= 0)
 	{
 		printer(&phil[i]);
-		usleep(args[NUM] * 1000);
+		usleep(100000);
+//		usleep(args[NUM] * 1000);
 	//	free_detach_destroy(phil, phil_threads, mu, sct);
-		usleep(1000000);
+//		usleep(1000000);
 		return (0);
 	}
 	return (1);
@@ -52,10 +53,10 @@ void	*life_cycle(void *arg)
 	gettimeofday(p->last_eat, NULL);
 	pthread_create(&race, NULL, race_begins, p);
 	j = 0;
+	if (p->i % 2 != 0)
+		usleep(p->eat / 2);
 	while (j != p->finish)
 	{
-		if (*p->one_dead == DEATH)
-			return (0);
 		if (go_think(p) == 0)
 			break ;
 		if (go_eat(p) == 0)
@@ -68,45 +69,13 @@ void	*life_cycle(void *arg)
 	return (0);
 }
 
-int	check_flags(int *flags, int num)
+int	check_philos(t_args *all)
 {
-	int	i;
-
-	i = 0;
-	while (i < num)
-	{
-		if (flags[i] == 0)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	check_philos(t_phil *ps, int num, int *dead)
-{
-	int	i;
-	int	*flags;
-
-	flags = malloc(sizeof(int) * num);
 	while (1)
 	{
-		i = -1;
-		while (++i < num)
-		{
-			if (*ps[i].status == DEATH)
-			{
-				*dead = DEATH;
-				free(flags);
-				return (i);
-			}
-			if (*ps[i].death == ps[i].finish)
-				flags[i] = 1;
-			if (check_flags(flags, num) == 1)
-			{
-				free(flags);
-				return (i);
-			}
-		}
+		if (*all->dead == DEATH)
+			return (*all->who_is_dead);
+		usleep(1000);
 	}
 	return (0);
 }

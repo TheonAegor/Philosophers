@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:47 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/13 17:31:36 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 09:51:05 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	main(int argc, char *argv[])
 	all->dead = malloc(sizeof(int));
 	all->args = malloc(sizeof(long) * NUM_OF_ARGS);
 	all->time = malloc(sizeof(long));
+	all->who_is_dead = malloc(sizeof(int));
+	*all->who_is_dead = 0;
 	*all->dead = 0;
 	pthread_create(&time_thread, NULL, time_count, all);
 	pthread_detach(time_thread);

@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:35 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/13 20:29:23 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 13:04:28 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,20 @@ void	*race_begins(void *arg)
 	change = 0;
 	while (1)
 	{
-		time = *p->last_eat;
 		gettimeofday(&time2, NULL);
+		time = *p->last_eat;
 		change = (time2.tv_sec - time.tv_sec) * 1000000 + \
 				 (time2.tv_usec - time.tv_usec);
 		if (p->die <= change)
 		{
+//			printf("time = %ld,\ntime2 = %ld,\np->die = %ld,\nchange = %ld\n",time.tv_sec * 1000 + time.tv_usec / 1000,time2.tv_sec * 1000 + time2.tv_usec / 1000, p->die, change);
 			*p->status = DEATH;
+			if (*p->who_is_dead == 0)
+				*p->who_is_dead = p->i;
 			*p->one_dead = DEATH;
 			return (0);
 		}
+		if (*p->one_dead == DEATH)
+			return (0);
 	}
 }

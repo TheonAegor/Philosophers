@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:29 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/13 19:40:16 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 09:28:01 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	create_phils(t_args *sct, long *time, pthread_mutex_t \
 		create_philosopher(sct->args, time, mu, &phil[i]);
 		phil[i].i = i;
 		phil[i].one_dead = sct->dead;
+		phil[i].who_is_dead = sct->who_is_dead;
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:07:52 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/13 21:50:37 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 13:00:29 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 
 int	grab_left(t_phil *p)
 {
+	pthread_mutex_lock(&(p->mu[p->i]));
 	if (*p->one_dead != DEATH)
 	{
 		*p->status = LFORK;
 		printer(p);
 	}
-	pthread_mutex_lock(&(p->mu[p->i]));
 	return (1);
 }
 
 int	grab_right(t_phil *p)
 {
+	if (p->i == p->num - 1)
+		pthread_mutex_lock(&(p->mu[0]));
+	else
+		pthread_mutex_lock(&(p->mu[(p->i) + 1]));
 	if (*p->one_dead != DEATH)
 	{
 		*p->status = RFORK;
 		printer(p);
 	}
-	if (p->i == p->num - 1)
-		pthread_mutex_lock(&(p->mu[0]));
-	else
-		pthread_mutex_lock(&(p->mu[(p->i) + 1]));
 	return (1);
 }
 
@@ -54,17 +54,9 @@ int	release_left(t_phil *p)
 
 int	go_eat(t_phil *p)
 {
-	if (p->i % 2 == 0)
-	{
-		grab_left(p);
-		grab_right(p);
-	}
-	else
-	{
-		usleep(p->eat / 2);
-		grab_right(p);
-		grab_left(p);
-	}
+	//printf("here i = %d, p->num = %d\n", p->i, (int)p->num - 1);
+	grab_right(p);
+	grab_left(p);
 	if (*p->one_dead != DEATH)
 	{
 		*p->status = EATING;

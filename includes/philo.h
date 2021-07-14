@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:07:33 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/13 20:19:40 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 09:33:10 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_args
 	long			*args;
 	int				*dead;
 	long			*time;
+	int				*who_is_dead;
 }				t_args;
 
 typedef struct s_phil
@@ -63,11 +64,12 @@ typedef struct s_phil
 	long			*time;
 	long			*death_time;
 	int				*status;
-	int				*one_dead;
 	int				i;
 	int				*death;
 	pthread_mutex_t	*mu;
 	struct timeval	*last_eat;
+	int				*one_dead;
+	int				*who_is_dead;
 
 }				t_phil;
 
@@ -101,7 +103,7 @@ int			philosopher(t_args *args, long *time);
 void		create_philosopher(long *args, long *time, \
 		pthread_mutex_t *mu, t_phil *phil);
 void		*life_cycle(void *arg);
-int			check_philos(t_phil *ps, int num, int *dead);
+int			check_philos(t_args *all);
 //phil_itils
 void		init_mutexes(pthread_mutex_t **mu, int num);
 void		create_phils(t_args *sct, long *time, \
