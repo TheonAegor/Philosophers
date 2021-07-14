@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:35 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 14:34:48 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 15:24:03 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	*time_count(void *arg)
 void	*race_begins(void *arg)
 {
 	t_phil			*p;
-	struct timeval	time;
 	struct timeval	time2;
 	long			change;
 
@@ -46,19 +45,18 @@ void	*race_begins(void *arg)
 	while (1)
 	{
 		gettimeofday(&time2, NULL);
-		time = *p->last_eat;
-		change = (time2.tv_sec - time.tv_sec) * 1000000 + \
-				 (time2.tv_usec - time.tv_usec);
+		change = (time2.tv_sec - (*p->last_eat).tv_sec) * 1000000 + \
+				 (time2.tv_usec - (*p->last_eat).tv_usec);
+		usleep(1);
+		if (*p->one_dead == DEATH)
+			return (0);
 		if (p->die <= change)
 		{
 			*p->status = DEATH;
 			if (*p->who_is_dead == 0)
 				*p->who_is_dead = p->i;
 			*p->one_dead = DEATH;
-			printf("time = %ld,\ntime2 = %ld,\np->die = %ld,\nchange = %ld\n",time.tv_sec * 1000 + time.tv_usec / 1000,time2.tv_sec * 1000 + time2.tv_usec / 1000, p->die, change);
 			return (0);
 		}
-		if (*p->one_dead == DEATH)
-			return (0);
 	}
 }

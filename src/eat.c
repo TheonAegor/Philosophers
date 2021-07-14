@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:07:52 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 13:00:29 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 15:36:53 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	release_left(t_phil *p)
 int	go_eat(t_phil *p)
 {
 	//printf("here i = %d, p->num = %d\n", p->i, (int)p->num - 1);
-	grab_right(p);
 	grab_left(p);
+	grab_right(p);
 	if (*p->one_dead != DEATH)
 	{
 		*p->status = EATING;
@@ -64,8 +64,8 @@ int	go_eat(t_phil *p)
 		usleep(p->eat);
 		gettimeofday(p->last_eat, NULL);
 	}
-	release_left(p);
 	release_right(p);
+	release_left(p);
 	if (*p->one_dead == DEATH)
 		return (0);
 	return (1);

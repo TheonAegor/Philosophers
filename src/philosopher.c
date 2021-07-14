@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:20 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 14:33:01 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 15:27:36 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ void	*life_cycle(void *arg)
 	int				j;
 
 	p = arg;
-	pthread_create(&race, NULL, race_begins, p);
 	gettimeofday(p->last_eat, NULL);
-	j = 0;
+	pthread_create(&race, NULL, race_begins, p);
 	if (p->i % 2 != 0)
 		usleep(p->eat / 2);
+	j = 0;
 	while (j != p->finish)
 	{
 		if (go_think(p) == 0)

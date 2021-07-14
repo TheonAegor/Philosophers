@@ -7,6 +7,8 @@ int		go_sleep(t_phil *p)
 	*p->status = SLEEPING;
 	printer(p);
 	usleep(p->sleep);
+	if (*p->one_dead == DEATH)
+		return (0);
 	return (1);
 }
 
