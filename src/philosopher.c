@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:20 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 15:27:36 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 15:49:30 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	philosopher(t_args *sct, long *time)
 		printer(&phil[i]);
 		usleep(100000);
 //		usleep(args[NUM] * 1000);
-	//	free_detach_destroy(phil, phil_threads, mu, sct);
+		free_detach_destroy(phil, phil_threads, mu, sct);
 //		usleep(1000000);
 		return (0);
 	}

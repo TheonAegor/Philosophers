@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:57 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/13 19:35:08 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 15:53:29 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ void	free_phils(t_phil *phil, pthread_t *pt, pthread_mutex_t *mu, int num)
 	{
 		while (i < num)
 		{
-			/*
 			free(phil[i].death);
 			free(phil[i].status);
 			free(phil[i].last_eat);
-			*/
 			i++;
 		}
 		free(phil);
@@ -64,6 +62,7 @@ void	free_all(t_args *all)
 	free(all->dead);
 	free(all->time);
 	free(all->args);
+	free(all->who_is_dead);
 	free(all);
 }
 
