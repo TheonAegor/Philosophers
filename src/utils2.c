@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:57 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 19:04:15 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 20:29:26 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ void	free_phils(t_phil *phil, pthread_t *pt, pthread_mutex_t *mu, int num)
 
 void	free_all(t_args *all)
 {
-//	pthread_mutex_unlock(all->print);
-//	pthread_mutex_destroy(all->print);
-//	free(all->print);
+	free(all->print);
 	free(all->dead);
 	free(all->time);
 	free(all->args);
@@ -69,16 +67,7 @@ void	free_all(t_args *all)
 	free(all);
 }
 
-void	detach_join(pthread_t *thr)
+void	my_sleep(long usec)
 {
-	int err;
-
-	/*
-	err = pthread_detach(*thr);
-	if (err != 0)
-		printf("detach err %s\n", strerror(errno));
-		*/
-	err = pthread_join(*thr, NULL);
-	if (err != 0)
-		printf("%s\n", strerror(errno));
+	usleep(usec);
 }

@@ -1,12 +1,12 @@
-
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   eat.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/13 15:07:52 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 18:50:23 by taegor           ###   ########.fr       */
+/*   Created: 2021/07/14 19:51:43 by taegor            #+#    #+#             */
+/*   Updated: 2021/07/14 20:20:26 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,14 @@ int	release_left(t_phil *p)
 
 int	go_eat(t_phil *p, pthread_t *print)
 {
-	//printf("here i = %d, p->num = %d\n", p->i, (int)p->num - 1);
 	grab_left(p, print);
 	grab_right(p, print);
 	if (*p->one_dead != DEATH)
+	{
 		*p->status = EATING;
-	printer(p, print);
-	usleep(p->eat);
+		printer(p, print);
+	}
+	my_sleep(p->eat);
 	gettimeofday(p->last_eat, NULL);
 	release_right(p);
 	release_left(p);

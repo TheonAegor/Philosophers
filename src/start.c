@@ -6,13 +6,13 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:47 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 18:27:24 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 20:29:10 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int init_all(t_args *all)
+static int	init_all(t_args *all)
 {
 	all->dead = malloc(sizeof(int));
 	all->args = malloc(sizeof(long) * NUM_OF_ARGS);
