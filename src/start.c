@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:47 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 20:29:10 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 20:39:27 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,15 @@ int	main(int argc, char *argv[])
 
 	all = malloc(sizeof(t_args));
 	init_all(all);
-	pthread_create(&time_thread, NULL, time_count, all);
-	pthread_detach(time_thread);
 	err = parcer(argc, argv, &all->args);
 	if (err != 1)
+	{
+		free_all(all);
 		return (error_handler(err));
+	}
+	pthread_create(&time_thread, NULL, time_count, all);
+	pthread_detach(time_thread);
 	philosopher(all, all->time);
-	pthread_join(time_thread, NULL);
 	free_all(all);
 	return (1);
 }

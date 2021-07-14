@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:35 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 15:24:03 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 20:41:13 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*time_count(void *arg)
 				  (time2.tv_usec - time.tv_usec);
 		if (*change < 0)
 			*change *= -1;
-		if (*args->dead == DEATH)
+		if (*args->dead == DEATH || *args->have_eaten == args->args[NUM])
 			return (0);
 	}
 }
