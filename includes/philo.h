@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:07:33 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 17:37:25 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 17:54:54 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_args
 	long			*time;
 	int				*who_is_dead;
 	int				*have_eaten;
+	pthread_mutex_t	*print;
 }				t_args;
 
 typedef struct s_phil
@@ -68,6 +69,7 @@ typedef struct s_phil
 	int				i;
 	int				*have_eaten;
 	pthread_mutex_t	*mu;
+	pthread_mutex_t	*print;
 	struct timeval	*last_eat;
 	int				*one_dead;
 	int				*who_is_dead;

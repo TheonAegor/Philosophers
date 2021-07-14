@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:20 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 17:46:43 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 18:04:51 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	philosopher(t_args *sct, long *time)
 	if (i >= 0)
 	{
 		printer(&phil[i], &print);
+		pthread_mutex_lock(sct->print);
 //		usleep(1000000);
 //		usleep(args[NUM] * 1000);
 		pthread_join(print, NULL);
@@ -71,7 +72,7 @@ void	*life_cycle(void *arg)
 	}
 	if (j == p->finish)
 		*p->have_eaten += 1;
-	pthread_join(print, NULL);
+//	pthread_join(print, NULL);
 	pthread_exit(0);
 }
 

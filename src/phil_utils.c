@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:29 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 17:42:15 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 17:56:40 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	create_phils(t_args *sct, long *time, pthread_mutex_t \
 		phil[i].one_dead = sct->dead;
 		phil[i].who_is_dead = sct->who_is_dead;
 		phil[i].have_eaten = sct->have_eaten;
+		phil[i].print = sct->print;
 		i++;
 	}
 }

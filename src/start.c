@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:47 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 17:41:39 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/14 17:57:59 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	main(int argc, char *argv[])
 	all->time = malloc(sizeof(long));
 	all->who_is_dead = malloc(sizeof(int));
 	all->have_eaten = malloc(sizeof(int));
+	all->print = malloc(sizeof(pthread_mutex_t));
+	pthread_mutex_init(all->print, NULL);
 	*all->have_eaten = 0;
 	*all->who_is_dead = 0;
 	*all->dead = 0;
