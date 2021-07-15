@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:07:33 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/15 13:40:31 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/15 14:12:33 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ int			philosopher(t_args *args, long *time);
 void		create_philosopher(long *args, long *time, \
 		pthread_mutex_t *mu, t_phil *phil);
 void		*life_cycle(void *arg);
-int			check_philos(t_args *all, t_phil *philos);
 void		init_mutexes(pthread_mutex_t **mu, int num);
 void		create_phils(t_args *sct, long *time, \
 		pthread_mutex_t *mu, t_phil *phil);

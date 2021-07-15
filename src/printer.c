@@ -6,13 +6,13 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:42 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/15 13:34:50 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/15 14:15:25 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	free_pr(t_print *pr)
+static void	free_pr(t_print *pr)
 {
 	free(pr->str);
 	free(pr->time);
@@ -20,7 +20,7 @@ void	free_pr(t_print *pr)
 	free(pr);
 }
 
-int	fill_str(t_print *pr, int len)
+static int	fill_str(t_print *pr, int len)
 {
 	int	status;
 
@@ -48,7 +48,7 @@ int	fill_str(t_print *pr, int len)
 	return (1);
 }
 
-void	*make_str(void *arg)
+static void	*make_str(void *arg)
 {
 	t_print	*pr;
 	int		status;
