@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:08:20 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 20:13:24 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/15 14:05:14 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,13 @@ static void	end(t_args *sct, t_phil *phil, \
 		pthread_t *phil_threads, pthread_mutex_t *mu)
 {
 	int				i;
-	pthread_t		print;
 
-	i = check_philos(sct);
+	i = check_philos(sct, phil);
 	if (i >= 0)
-	{
-		printer(&phil[i], &print);
-		pthread_mutex_lock(sct->print);
-		pthread_join(print, NULL);
-		my_sleep(100000);
-		free_detach_destroy(phil, phil_threads, mu, sct);
-	}
+		printer(&phil[i]);
+	pthread_mutex_lock(sct->print);
+	my_sleep(100000);
+	free_detach_destroy(phil, phil_threads, mu, sct);
 }
 
 int	philosopher(t_args *sct, long *time)
@@ -50,37 +46,52 @@ int	philosopher(t_args *sct, long *time)
 void	*life_cycle(void *arg)
 {
 	t_phil			*p;
-	pthread_t		race;
-	pthread_t		print;
 	int				j;
 
 	p = arg;
 	gettimeofday(p->last_eat, NULL);
-	pthread_create(&race, NULL, race_begins, p);
 	if (p->i % 2 != 0)
 		my_sleep(p->eat / 2);
 	j = 0;
 	while (j != p->finish)
 	{
-		go_think(p, &print);
-		go_eat(p, &print);
-		go_sleep(p, &print);
+		go_think(p);
+		go_eat(p);
+		go_sleep(p);
 		if (j <= p->finish)
 			j++;
+		if (*p->one_dead == DEATH)
+			return (0);
 	}
 	if (j == p->finish)
 		*p->have_eaten += 1;
-	while (1)
-		usleep(1);
+	return (0);
 }
 
-int	check_philos(t_args *all)
+int	check_philos(t_args *all, t_phil *philos)
 {
+	struct timeval	time;
+	long			change;
+	int				i;
+
 	while (1)
 	{
-		if (*all->dead == DEATH || *all->have_eaten == all->args[NUM])
-			return (*all->who_is_dead);
-		usleep(1);
+		gettimeofday(&time, NULL);
+		i = 0;
+		while (i < all->args[NUM])
+		{
+			change = (time.tv_sec - philos[i].last_eat->tv_sec) * 1000000 + (time.tv_usec - philos[i].last_eat->tv_usec);
+			if (*all->have_eaten == all->args[NUM])
+				return (ALL_FULL);
+			if (change >= all->args[DIE])
+			{
+				*philos[i].status = DEATH;
+				*all->dead = DEATH;
+				return (i);
+			}
+			i++;
+		}
+
 	}
-	return (0);
+	return (-1);
 }

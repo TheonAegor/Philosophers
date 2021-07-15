@@ -6,7 +6,7 @@
 /*   By: taegor <taegor@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 15:07:33 by taegor            #+#    #+#             */
-/*   Updated: 2021/07/14 20:30:52 by taegor           ###   ########.fr       */
+/*   Updated: 2021/07/15 13:40:31 by taegor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # define COMMON_SYMBOLS 8
 # define NUM_OF_ARGS 5
+# define ALL_FULL -2
 
 enum e_errors {
 	ER_NUM_ARGS = -40,
@@ -101,21 +102,21 @@ int			philosopher(t_args *args, long *time);
 void		create_philosopher(long *args, long *time, \
 		pthread_mutex_t *mu, t_phil *phil);
 void		*life_cycle(void *arg);
-int			check_philos(t_args *all);
+int			check_philos(t_args *all, t_phil *philos);
 void		init_mutexes(pthread_mutex_t **mu, int num);
 void		create_phils(t_args *sct, long *time, \
 		pthread_mutex_t *mu, t_phil *phil);
 void		create_threads(t_phil *phil, pthread_t *phil_threads, int num);
 void		free_detach_destroy(t_phil *phil, pthread_t *pt, \
 		pthread_mutex_t *mu, t_args *all);
-void		printer(t_phil *p, pthread_t *print);
-int			grab_left(t_phil *p, pthread_t *print);
-int			grab_right(t_phil *p, pthread_t *print);
+void		printer(t_phil *p);
+int			grab_left(t_phil *p);
+int			grab_right(t_phil *p);
 int			release_right(t_phil *p);
 int			release_left(t_phil *p);
-int			go_eat(t_phil *p, pthread_t *print);
-int			go_sleep(t_phil *p, pthread_t *print);
-int			go_think(t_phil *p, pthread_t *print);
+int			go_eat(t_phil *p);
+int			go_sleep(t_phil *p);
+int			go_think(t_phil *p);
 void		print_args(t_args *args);
 int			choose_path(t_phil *p);
 
